@@ -1,0 +1,8 @@
+{
+    "_User__id": 0,
+    "_User__username": "user1",
+    "_User__passwordHash": "passwordhash1",
+    "_User__resourcePoints": {},
+    "_User__totalPoints": 0,
+    "_User__authCode": "405e7751ea4377b4b2459bcd7b3cf3fd6887218e998ca351f0eeb5103d497b80"
+}

@@ -1,0 +1,7 @@
+{
+    "_title": "Persian_language",
+    "_link": "http://127.0.0.1:5000/wiki?title=Persian_language",
+    "_categoryid": 1,
+    "_maxPoints": 528,
+    "_comments": []
+}

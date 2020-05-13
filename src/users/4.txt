@@ -1,0 +1,37 @@
+{
+    "_User__id": 4,
+    "_User__username": "Dominik",
+    "_User__passwordHash": "bf3287fba669d11b2ed8c3130d3d3b324bfcdab93da82869d6eb05da334a5f31",
+    "_User__resourcePoints": {
+        "http://127.0.0.1:5000/wiki?title=Taim+Ecological+Station": [
+            45.0,
+            117
+        ],
+        "http://127.0.0.1:5000/wiki?title=%C5%81%C4%99kawica%2C+Kozienice+County": [
+            30.0,
+            103
+        ],
+        "http://127.0.0.1:5000/wiki?title=Warsaw": [
+            765,
+            765
+        ],
+        "http://127.0.0.1:5000/wiki?title=Persian_language": [
+            15.0,
+            528
+        ],
+        "http://127.0.0.1:5000/wiki?title=Keren%2C+Iran": [
+            15.0,
+            102
+        ],
+        "http://127.0.0.1:5000/wiki?title=Iran": [
+            90.0,
+            1131
+        ],
+        "http://127.0.0.1:5000/wiki?title=Civilization": [
+            30.0,
+            501
+        ]
+    },
+    "_User__totalPoints": 0,
+    "_User__authCode": "2f5da8ce841d5f23b71412adac369bee732247a36c3383889addaad314419f5c"
+}
