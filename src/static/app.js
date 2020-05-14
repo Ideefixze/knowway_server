@@ -13,4 +13,4 @@ function doAjax() {
             }
     });
 }
-setTimeout(doAjax, interval);
+setTimeout(doAjax, 0);

@@ -62,23 +62,48 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/wiki')
+@app.route('/wiki', methods=['GET','POST'])
 def wiki():
+    #If not logged in, return
     if(session.get('auth') is None):
         return redirect(url_for('login'))
+
+    #If posting a comment using form, add it first
+    if request.method == 'POST':
+        content = request.form['content']
+        title = request.values.get('title')
+        SERVER.addComment(SERVER.scanAuth(session.get('auth')).getId(), content, request.base_url+"?title="+request.values.get('title'))
     
+    #Get title of wiki article and check if it is valid, if not random a page
     title = request.values.get('title')
     if(title is not None):
         w = wikipedia.WikipediaPage(title)
     else:
         return redirect(url_for('wiki', **{'title':wikipedia.random()}))
-    #w="<br><br><br>YO!"
-    username = SERVER.scanAuth(session['auth']).getUsername()
-    return render_template('wiki.html', title='KnowWay!', username=username, sourceHTML = Markup(w.html()))
 
+    #Get username so it will be displayed on <div> in app    
+    username = SERVER.scanAuth(session['auth']).getUsername()
+
+    #Try to get comments, if no resource exist, return empty
+    try:
+        comments=SERVER.rdb.getResource(1, title).getComments()
+    except:
+        comments=[]
+
+    #Create new list of [[username,content]...] that will be displayed in list on page
+    finalcommentlist=SERVER.getResourceFinalCommentList(comments)
+    
+    return render_template('wiki.html', title='KnowWay!', username=username, comments=finalcommentlist, sourceHTML = Markup(w.html()), formAddComment=f.AddCommentForm())
+
+#Because links in wikipedia pages are in format /wiki/<title> and we are using /wiki?title=, redirect them to meet our expectations
 @app.route('/wiki/<title>')
 def wiki_redirect(title):
     return redirect(url_for('wiki', **{'title':title}))
+
+@app.route('/user/<username>')
+def user_profile(username):
+    print(SERVER.scanUsername(username).getResourcePointsDict())
+    return render_template('user.html', title='KnowWay!', user=SERVER.scanUsername(username))
 
 
 @app.route('/main', methods=['GET','POST'])
@@ -97,18 +122,17 @@ def main():
         else:
             return redirect(url_for('wiki', **{'title':w.title}))
 
-    return render_template('main.html', title='KnowWay!', auth=session['auth'], formFindWikipedia=f.FindWikipedia(), error=error)
+    username = SERVER.scanAuth(session.get('auth')).getUsername()
+    return render_template('main.html', title='KnowWay!', username=username, formFindWikipedia=f.FindWikipediaForm(), error=error)
 
 @app.route('/addPoints', methods=['GET','POST'])
 def addPoints():
     if request.method == 'POST':
         link = request.values.get('link')
         time = request.values.get('time')
-        #print(session.get('auth'),"   sent   ",link,"   ",time)
         user = SERVER.scanAuth(session.get('auth'))
         
         points = SERVER.addPointsForUser(user.getId(), session.get('auth'), link, float(time))
-        SERVER.addComment(user.getId(), "Superowe!",link)
 
         return str(int(points[0])) + "/" +str(points[1]) 
     else:

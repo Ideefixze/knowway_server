@@ -12,5 +12,7 @@ class ResourceFactory(object):
     def LoadResourceFromJSON(self, jsondata):
         data = json.loads(jsondata)
         r = self.ResourceFromLink(data["_link"])
-        r.setComments(data["_comments"])
+        r.setVisits(data['_visits'])
+        for c in data["_comments"]:
+            r.addComment(c['_Comment__id'], c['_Comment__who'], c['_Comment__content'])
         return r

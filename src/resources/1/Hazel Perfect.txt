@@ -1,0 +1,8 @@
+{
+    "_title": "Hazel Perfect",
+    "_link": "http://127.0.0.1:5000/wiki?title=Hazel+Perfect",
+    "_categoryid": 1,
+    "_maxPoints": 122,
+    "_comments": [],
+    "_visits": 0
+}

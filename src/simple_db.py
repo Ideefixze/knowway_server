@@ -68,14 +68,20 @@ class Simple_DB_Resource(object):
             return res
 
     def deleteResourceData(self):
-        shutil.rmtree(self.current_dir+"\\resources")
+        try:
+            shutil.rmtree(self.current_dir+"\\resources")
+        except:
+            return
 
     def saveResource(self, res):
+        filename = self.current_dir+"\\resources\\"+str(res.getCategoryID())+"\\"+str(res.getTitle())+".txt"
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
         try:
-            savefile = open(self.current_dir+"\\resources\\"+str(res.getCategoryID())+"\\"+str(res.getTitle())+".txt", "w+")
+            savefile = open(filename, "w+")
         except:
-            print("Unable to find: "+str(res.getCategoryID())+"\\"+str(res.getTitle())+".txt!")
+            print("Unable to open: "+str(res.getCategoryID())+"\\"+str(res.getTitle())+".txt!")
             raise AssertionError
         else:
             savefile.write(res.serialize())
             savefile.close()
+

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
 class LoginForm(FlaskForm):
@@ -16,6 +16,10 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 
-class FindWikipedia(FlaskForm):
+class FindWikipediaForm(FlaskForm):
     searchWiki = StringField('Find article:', validators=[DataRequired()])
     submit = SubmitField('Search')
+
+class AddCommentForm(FlaskForm):
+    content = TextAreaField('', validators=[DataRequired()],render_kw={'style':'resize:none; width:144px; height:64px;'})
+    submit = SubmitField('Add comment')

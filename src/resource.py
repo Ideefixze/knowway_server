@@ -27,6 +27,7 @@ class Resource:
         self._maxPoints = 0
         self._comments = list()
         self.recalculateMaxPoints()
+        self._visits = 0
 
     def getLink(self):
         return self._link
@@ -46,17 +47,20 @@ class Resource:
     def setComments(self, c):
         self._comments=c
 
+    def getVisits(self):
+        return self._visits
+
+    def addVisit(self):
+        self._visits+=1
+
+    def setVisits(self, v):
+        self._visits=v
+
     def addComment(self, cid:int, user_id:int, content:str):
         for i in self._comments:
-            try:
-                i.getCommentTuple()
-            except:
-                if(i["_Comment__content"]==content):
-                    return
-            else:
-                if(i.getCommentTuple()[2]==content):
-                    return
-        
+            if(i.getCommentTuple()[2]==content):
+                return
+        #print(Comment(cid, user_id, content).getCommentTuple())
         self._comments.append(Comment(cid, user_id, content))
 
     def removeComment(self, cid):
@@ -72,6 +76,8 @@ class Resource:
 
     def serialize(self):
         return json.dumps(self, default=lambda  o: o.__dict__, sort_keys=False, indent=4)
+
+
 
     
 

@@ -59,7 +59,7 @@ class User:
         if(link in self.__resourcePoints.keys()):
             return self.__resourcePoints[link]
         else:
-            return 0
+            return [0,0]
 
     def printDebugInfo(self):
         print("["+str(self.__id)+"] Username: "+self.__username +", auth ("+self.__authCode+"), passwordHash = "+self.__passwordHash)
@@ -78,14 +78,17 @@ class User:
     def addPointsForResource(self, link, points, maxPoints):
 
         if(link in self.__resourcePoints):
-            self.__resourcePoints[link][0] = points + self.__resourcePoints[link][0]
+            self.__resourcePoints[link][0] += points
             self.__resourcePoints[link][1] = maxPoints
         else:
             self.__resourcePoints[link] = [points, maxPoints]
-
+            
+        self.__totalPoints += points
         #If maximum points for resource has been obtained, reduce overflow
         if(self.__resourcePoints[link][0]>self.__resourcePoints[link][1]):
+            self.__totalPoints -= self.__resourcePoints[link][0]-self.__resourcePoints[link][1] 
             self.__resourcePoints[link][0]=self.__resourcePoints[link][1] 
+            
 
 
 

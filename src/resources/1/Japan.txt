@@ -1,0 +1,19 @@
+{
+    "_title": "Japan",
+    "_link": "http://127.0.0.1:5000/wiki?title=Japan",
+    "_categoryid": 1,
+    "_maxPoints": 738,
+    "_comments": [
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 5,
+            "_Comment__content": "Kocham Japoni\u0119!"
+        },
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 6,
+            "_Comment__content": "Ja te\u017c uwielbiam Kraj Kwitn\u0105cej Wi\u015bni!"
+        }
+    ],
+    "_visits": 2
+}

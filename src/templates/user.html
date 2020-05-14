@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/wikipedia.css')}}">
+        
+    </head>
+    <body>
+        <div style="text-align:center; background-color:powderblue;">
+        <p style="color:black" ><b>KnowWay!</b></p>
+        </div>
+        <div style="position: fixed; top: 20%; left: 50%; text-align: center; transform: translate(-50%, -50%);">
+            <br>
+            {{ user.getUsername() }} 
+            <br>
+            {{ user.getTotalPoints() }} Pts.
+            <br>
+            {% for key,value in user.getResourcePointsDict().items() %}
+                <hr>
+                <a href="{{key}}">{{key}}</a> : {{value[0]}} / {{value[1]}}
+                <br>
+            {% endfor %}
+            <br>
+            <a href="/main">Go back</a>
+            <br>
+        </div>
+    </body>
+</html>

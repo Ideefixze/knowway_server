@@ -85,52 +85,73 @@ class Server(object):
 
     def resetServer(self):
         self.udb.deleteUserData()
+        self.rdb.deleteResourceData()
 
     def addPointsForUser(self, uid, auth, link, time):
+        #Open file with user data
         try:
             f = open(current_dir+"\\users\\"+str(uid)+".txt", 'r')
         except:
             return [0,0]
         else:
+            #Recreate user in memory from JSON
             loadedUser = u.User.loadFromJSON(f.read())
+            #If given auth is valid with loaded user of given id
             if(auth == loadedUser.getAuthCode()):
+                #check if time is correct
                 if(time>=0.0):
+                    #create our resource from link to recalculate max points and save it if it doesnt exist in our local database
                     res = self.resfactory.ResourceFromLink(link)
                     localres = self.rdb.getResource(res.getCategoryID(), res.getTitle())
                     if(localres is None):
+                        res.addVisit()
                         self.rdb.saveResource(res)
-                    #print(res)
+                    else:
+                        if(loadedUser.getResourcePointsForResource(link)==[0,0]):
+                            localres.addVisit()
+                            self.rdb.saveResource(localres)
+    
                     if(res is not None):
                         loadedUser.addPointsForResource(link, time*15, res.getMaxPoints())
                     else:
                         return [0,0]
             f.close()
+            #Apply changes to our database 
             self.saveUser(loadedUser)
             return loadedUser.getResourcePointsForResource(link)
 
     def addComment(self, uid, content, link):
         res = self.resfactory.ResourceFromLink(link)
         localres = self.rdb.getResource(res.getCategoryID(), res.getTitle())
-        localres.addComment(len(localres.getComments()), uid, content)
+
+        try:
+            id = localres.getComments()[-1].getCommentTuple[0]+1
+        except:
+            id=0
+
+        localres.addComment(id, uid, content)
         self.rdb.saveResource(localres)
 
+    #given the comment list of [comment_id, user_id, content] create [username, content] for displaying
+    def getResourceFinalCommentList(self, comments):
+        finalcommentlist = []
+        for c in comments:
+            finalcomment = []
+            try:
+                finalcomment.append(self.getUser(c.getCommentTuple()[1]).getUsername())
+            except:
+                finalcomment.append("Anonymous")
+
+            finalcomment.append(c.getCommentTuple()[2])
+            finalcommentlist.append(finalcomment)
+
+        return finalcommentlist
 
 
 
 if __name__ == '__main__':
-    #print(hasher.hash("zimny"))
-    #app.run("127.0.0.1",5000,debug=True)
-    
     s = Server("127.0.0.1", 5000)
     #s.resetServer()
     #for i in range(0,1000):
         #s.registerNewUser(str(str(i)+"user"), str(hash("password")))
     s.runServer()
-    #print(s.totalUserCount())
-    #s.registerNewUser("chuj", "abcd")
-    #i = s.registerNewUser("chujdwa","chuju")
-    #s.registerNewUser("aaaa","chuju")
-    #print(i)
-    #print(s.getUser(i).getAuthCode())
-    #print(s.addPointsForUser(i, s.getUser(i).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0))
-    #s = Server("127.0.0.1", 5000)
