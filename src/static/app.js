@@ -1,4 +1,4 @@
-var interval = 10000;  // 1000 = 1 second, 3000 = 3 seconds
+var interval = 1000;  // 1000 = 1 second, 3000 = 3 seconds
 function doAjax() {
     $.ajax({
             type: 'POST',
@@ -13,4 +13,4 @@ function doAjax() {
             }
     });
 }
-setTimeout(doAjax, 0);
+setTimeout(doAjax, interval);

@@ -1,0 +1,77 @@
+{
+    "_User__id": 10,
+    "_User__username": "Cz\u0142owiek",
+    "_User__passwordHash": "b36681b5088d20c19e5dbce438236ba728aef539ea2e14b750d2a56923c993d1",
+    "_User__resourcePoints": {
+        "http://127.0.0.1:5000/polona?title=wiadomosci-z-japonii-r-9-nr-5-listopad-grudzien-1976-nr-49": [
+            80,
+            80
+        ],
+        "http://127.0.0.1:5000/polona?title=polacy-na-dalekim-wschodzie": [
+            285.0,
+            3460
+        ],
+        "http://127.0.0.1:5000/polona?title=szlojme-na-polowaniu-humoreska-zydowska-dla-smiechu-i-rozweselenia-przytem-inne-wesole": [
+            420.0,
+            520
+        ],
+        "http://127.0.0.1:5000/polona?title=welocypedy-i-cyklisci": [
+            585.0,
+            700
+        ],
+        "http://127.0.0.1:5000/polona?title=krotka-rozprawa-miedzy-trzemi-osobami-panem-woytem-a-plebanem-ktorzy-y-swe-y-innich": [
+            210.0,
+            500
+        ],
+        "http://127.0.0.1:5000/polona?title=cmentarz-katolicki-w-dreznie": [
+            15.0,
+            340
+        ],
+        "http://127.0.0.1:5000/wiki?title=Poland": [
+            15.0,
+            1316
+        ],
+        "http://127.0.0.1:5000/wiki?title=Lesser_Poland": [
+            15.0,
+            918
+        ],
+        "http://127.0.0.1:5000/wiki?title=Statutes_of_Piotrk%C3%B3w": [
+            15.0,
+            108
+        ],
+        "http://127.0.0.1:5000/wiki?title=Polish_language": [
+            60.0,
+            469
+        ],
+        "http://127.0.0.1:5000/wiki?title=Hungary": [
+            100,
+            100
+        ],
+        "http://127.0.0.1:5000/wiki?title=Paris": [
+            945.0,
+            1160
+        ],
+        "http://127.0.0.1:5000/wiki?title=Willys+Lightning+engine": [
+            105,
+            105
+        ],
+        "http://127.0.0.1:5000/wiki?title=The+Laramie+Project+%28film%29": [
+            120,
+            120
+        ],
+        "http://127.0.0.1:5000/wiki?title=The_Laramie_Project": [
+            120.0,
+            151
+        ],
+        "http://127.0.0.1:5000/wiki?title=Denver_Center_for_the_Performing_Arts": [
+            158,
+            158
+        ],
+        "http://127.0.0.1:5000/polona?title=adama-mickiewicza-konrad-wallenrod-i-grazyna&page=0": [
+            420.0,
+            3500
+        ]
+    },
+    "_User__totalPoints": 3668.0,
+    "_User__authCode": "20539b2630eb70b7f2f5e73ac253ed20a2e46edec87fac2ad6fd9c998efcbe79"
+}

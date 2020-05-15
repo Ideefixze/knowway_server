@@ -10,6 +10,7 @@ import glob
 import threading
 import routes
 import hasher
+import urllib.parse
 
 current_dir = os.path.dirname(__file__)
 
@@ -87,6 +88,13 @@ class Server(object):
         self.udb.deleteUserData()
         self.rdb.deleteResourceData()
 
+    #Given the direct link, find local resource in data base
+    def getResource(self, link):
+        link = link.split("&page=",1)[0] 
+        title = link.split("?title=",1)[1]
+        title = urllib.parse.unquote(title) 
+        return self.rdb.getResource(self.resfactory.DetermineCategory(link), title)
+
     def addPointsForUser(self, uid, auth, link, time):
         #Open file with user data
         try:
@@ -96,34 +104,35 @@ class Server(object):
         else:
             #Recreate user in memory from JSON
             loadedUser = u.User.loadFromJSON(f.read())
-            #If given auth is valid with loaded user of given id
-            if(auth == loadedUser.getAuthCode()):
-                #check if time is correct
-                if(time>=0.0):
-                    #create our resource from link to recalculate max points and save it if it doesnt exist in our local database
+            #If given auth is valid with loaded user of given id and time is not negative
+            if(auth == loadedUser.getAuthCode() and time >=0.0):
+                #Find resource locally, if not found, create one and save it locally
+                localres = self.getResource(link)
+                if(localres is None):
                     res = self.resfactory.ResourceFromLink(link)
-                    localres = self.rdb.getResource(res.getCategoryID(), res.getTitle())
-                    if(localres is None):
-                        res.addVisit()
-                        self.rdb.saveResource(res)
-                    else:
-                        if(loadedUser.getResourcePointsForResource(link)==[0,0]):
-                            localres.addVisit()
-                            self.rdb.saveResource(localres)
-    
-                    if(res is not None):
-                        loadedUser.addPointsForResource(link, time*15, res.getMaxPoints())
-                    else:
-                        return [0,0]
+                    res.addVisit()
+                    self.rdb.saveResource(res)
+                else:
+                    res = localres
+                    if(loadedUser.getResourcePointsForResource(link)[0]==0):
+                        localres.addVisit()
+                        self.rdb.saveResource(localres)
+
+                if(res is not None):
+                    loadedUser.addPointsForResource(link, time*15, res.getMaxPoints())
+                else:
+                    return [0,0]
             f.close()
-            #Apply changes to our database 
+            #Apply changes to our user and save it locally
             self.saveUser(loadedUser)
             return loadedUser.getResourcePointsForResource(link)
 
     def addComment(self, uid, content, link):
-        res = self.resfactory.ResourceFromLink(link)
-        localres = self.rdb.getResource(res.getCategoryID(), res.getTitle())
 
+        localres = self.getResource(link)
+        if(localres is None):
+            localres = self.resfactory.ResourceFromLink(link)
+            self.rdb.saveResource(localres)
         try:
             id = localres.getComments()[-1].getCommentTuple[0]+1
         except:

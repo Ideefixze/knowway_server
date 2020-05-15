@@ -1,0 +1,19 @@
+{
+    "_title": "przyjemnosci-bolszewickie",
+    "_link": "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie",
+    "_categoryid": 2,
+    "_maxPoints": 280,
+    "_comments": [
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 8,
+            "_Comment__content": "lubie takie"
+        },
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 8,
+            "_Comment__content": "pozdrawiam!!"
+        }
+    ],
+    "_visits": 10
+}

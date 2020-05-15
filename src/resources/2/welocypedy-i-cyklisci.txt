@@ -1,0 +1,24 @@
+{
+    "_title": "welocypedy-i-cyklisci",
+    "_link": "http://127.0.0.1:5000/polona?title=welocypedy-i-cyklisci",
+    "_categoryid": 2,
+    "_maxPoints": 700,
+    "_comments": [
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 10,
+            "_Comment__content": "lubie rowery"
+        },
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 10,
+            "_Comment__content": "ffff"
+        },
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 10,
+            "_Comment__content": "pozdrawiam"
+        }
+    ],
+    "_visits": 1
+}

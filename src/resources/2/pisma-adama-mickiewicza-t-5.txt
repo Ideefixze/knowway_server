@@ -1,0 +1,8 @@
+{
+    "_title": "pisma-adama-mickiewicza-t-5",
+    "_link": "http://127.0.0.1:5000/polona?title=pisma-adama-mickiewicza-t-5",
+    "_categoryid": 2,
+    "_maxPoints": 1470,
+    "_comments": [],
+    "_visits": 2
+}

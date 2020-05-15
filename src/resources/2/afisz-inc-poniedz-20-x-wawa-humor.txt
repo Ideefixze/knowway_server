@@ -1,0 +1,8 @@
+{
+    "_title": "afisz-inc-poniedz-20-x-wawa-humor",
+    "_link": "http://127.0.0.1:5000/polona?title=afisz-inc-poniedz-20-x-wawa-humor",
+    "_categoryid": 2,
+    "_maxPoints": 20,
+    "_comments": [],
+    "_visits": 1
+}

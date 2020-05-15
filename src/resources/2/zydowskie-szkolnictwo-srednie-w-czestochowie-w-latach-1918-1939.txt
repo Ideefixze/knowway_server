@@ -1,0 +1,14 @@
+{
+    "_title": "zydowskie-szkolnictwo-srednie-w-czestochowie-w-latach-1918-1939",
+    "_link": "http://127.0.0.1:5000/polona?title=zydowskie-szkolnictwo-srednie-w-czestochowie-w-latach-1918-1939",
+    "_categoryid": 2,
+    "_maxPoints": 130,
+    "_comments": [
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 8,
+            "_Comment__content": "Lubie to"
+        }
+    ],
+    "_visits": 1
+}

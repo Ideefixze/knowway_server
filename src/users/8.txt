@@ -1,0 +1,97 @@
+{
+    "_User__id": 8,
+    "_User__username": "HAHA",
+    "_User__passwordHash": "090b235e9eb8f197f2dd927937222c570396d971222d9009a9189e2b6cc0a2c1",
+    "_User__resourcePoints": {
+        "http://127.0.0.1:5000/wiki?title=Archduke+Joseph+Francis+of+Austria": [
+            90.0,
+            118
+        ],
+        "http://127.0.0.1:5000/polona?title=zydowskie-szkolnictwo-srednie-w-czestochowie-w-latach-1918-1939&page=0": [
+            130,
+            130
+        ],
+        "http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0": [
+            315.0,
+            4960
+        ],
+        "http://127.0.0.1:5000/polona?title=pisma-adama-mickiewicza-t-5&page=0": [
+            60.0,
+            1470
+        ],
+        "http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=10": [
+            870.0,
+            4960
+        ],
+        "http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=15": [
+            30.0,
+            4960
+        ],
+        "http://127.0.0.1:5000/polona?title=krotka-rozprawa-miedzy-trzemi-osobami-panem-woytem-a-plebanem-ktorzy-y-swe-y-innich&page=0": [
+            15.0,
+            500
+        ],
+        "http://127.0.0.1:5000/polona?title=krotka-rozprawa-miedzy-trzemi-osobami-panem-woytem-a-plebanem-ktorzy-y-swe-y-innich&page=15": [
+            500,
+            500
+        ],
+        "http://127.0.0.1:5000/polona?title=krotka-rozprawa-miedzy-trzemi-osobami-panem-woytem-a-plebanem-ktorzy-y-swe-y-innich&page=2": [
+            500,
+            500
+        ],
+        "http://127.0.0.1:5000/polona?title=krotka-rozprawa-miedzy-trzemi-osobami-panem-woytem-a-plebanem-ktorzy-y-swe-y-innich&page=4": [
+            500,
+            500
+        ],
+        "http://127.0.0.1:5000/polona?title=urna-z-popiolami-rekopisow-i-starodrukow-spalonych-przez-wojsko-niemieckie-w-roku-1944-w&page=0": [
+            15.0,
+            140
+        ],
+        "http://127.0.0.1:5000/polona?title=wiersze-z-lat-1945-1950-przygotowane-do-tomu-czarna-piosenka&page=0": [
+            45.0,
+            1220
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=0": [
+            180.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=2": [
+            45.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=3": [
+            30.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=4": [
+            30.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=1000": [
+            105.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=1": [
+            15.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=5": [
+            15.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=6": [
+            135.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=7": [
+            15.0,
+            280
+        ],
+        "http://127.0.0.1:5000/polona?title=przyjemnosci-bolszewickie&page=8": [
+            75.0,
+            280
+        ]
+    },
+    "_User__totalPoints": 3715.0,
+    "_User__authCode": "457cca78b4c718e42b531aff32a5a35e64e95fd29852693234da9d9d21b244fd"
+}

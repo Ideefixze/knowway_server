@@ -1,0 +1,14 @@
+{
+    "_link": "http://127.0.0.1:5000/polona?title=adama-mickiewicza-konrad-wallenrod-i-grazyna",
+    "_categoryid": 2,
+    "_maxPoints": 3500,
+    "_comments": [
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 10,
+            "_Comment__content": "lubie ta ksiazke"
+        }
+    ],
+    "_visits": 1,
+    "_title": "adama-mickiewicza-konrad-wallenrod-i-grazyna"
+}

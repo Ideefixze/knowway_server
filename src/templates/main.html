@@ -17,6 +17,7 @@
             <br>
             <p style="font-size: larger;">Wikipedia</p>
             <a href="/wiki">Random article</a>
+            <p style="color: red;">{{ error }}</p>
             <form action="" method="post" novalidate>
                 {{ formFindWikipedia.hidden_tag() }}
                 <p>
@@ -25,7 +26,16 @@
                 </p>
                 <p>{{ formFindWikipedia.submit() }}</p>
             </form>
-            <p style="color: red;">{{ error }}</p>
+            <br>
+            <p style="font-size: larger;">Polona</p>
+            <form action="" method="post" novalidate>
+                {{ formFindPolona.hidden_tag() }}
+                <p>
+                    {{ formFindPolona.searchPolona.label }}<br>
+                    {{ formFindPolona.searchPolona(size=32) }}
+                </p>
+                <p>{{ formFindPolona.submit() }}</p>
+            </form>
         </div>
     </body>
 </html>

@@ -20,6 +20,10 @@ class FindWikipediaForm(FlaskForm):
     searchWiki = StringField('Find article:', validators=[DataRequired()])
     submit = SubmitField('Search')
 
+class FindPolonaForm(FlaskForm):
+    searchPolona = StringField('Find Polona book:', validators=[DataRequired()])
+    submit = SubmitField('Search')
+
 class AddCommentForm(FlaskForm):
     content = TextAreaField('', validators=[DataRequired()],render_kw={'style':'resize:none; width:144px; height:64px;'})
     submit = SubmitField('Add comment')
