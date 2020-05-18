@@ -5,6 +5,10 @@ import os
 import shutil
 import glob
 import json
+import threading
+
+#Seconds between ranking updates
+UPDATE_TIME = 30.0
 
 def eqAuth(loadedUser, check):
     return check == loadedUser.getAuthCode()
@@ -19,6 +23,7 @@ class Simple_DB_User(object):
 
     def __init__(self):
         self.current_dir = os.path.dirname(__file__)
+        self.createRanking()
 
     def getUser(self, id):
         try:
@@ -49,12 +54,31 @@ class Simple_DB_User(object):
         saveFile.write(userdata.serialize())
         saveFile.close()
 
+    def createRanking(self,repeat=True):
+        if(repeat):
+            threading.Timer(UPDATE_TIME, self.createRanking).start()
+
+        users = list()
+        for filename in os.listdir(self.current_dir+"\\users\\"):
+            with open(os.path.join(self.current_dir+"\\users\\", filename), 'r') as f:
+                loadedUser = u.User.loadFromJSON(f.read())
+                users.append([loadedUser.getUsername(), loadedUser.getTotalPoints()])
+        
+        users.sort(key=lambda x: x[1],reverse=True)
+        saveFile = open(self.current_dir+"\\stats\\ranking.txt", "w+")
+        saveFile.write(json.dumps(users))
+        saveFile.close()
+
+
 #Simple DB class for managing resource comments
 class Simple_DB_Resource(object):
 
     def __init__(self):
         self.current_dir = os.path.dirname(__file__)
         self.res_factory = rf.ResourceFactory()
+
+        self.createRanking(1)
+        self.createRanking(2)
 
     def getResource(self, cat, title):
         try:
@@ -84,4 +108,39 @@ class Simple_DB_Resource(object):
         else:
             savefile.write(res.serialize())
             savefile.close()
+
+    def createRanking(self, catid, repeat=True):
+        
+        catid = str(catid)
+
+        if(repeat):
+            threading.Timer(UPDATE_TIME, self.createRanking, args=[catid]).start()
+
+        res = list()
+        try:
+            for filename in os.listdir(self.current_dir+"\\resources\\"+catid+"\\"):
+                with open(os.path.join(self.current_dir+"\\resources\\"+catid+"\\", filename), 'r') as f:
+                    loadedRes = self.res_factory.LoadResourceFromJSON(f.read())
+                    res.append([loadedRes.getLink(), loadedRes.getTitle(), loadedRes.getVisits()])
+        except:
+            return
+
+        res.sort(key=lambda x: x[2],reverse=True)
+        saveFile = open(self.current_dir+"\\stats\\res_ranking"+catid+".txt", "w+")
+        saveFile.write(json.dumps(res))
+        saveFile.close()
+
+    def recommendFromCat(self, n, cat):
+        """Returns an n'th item from ranking list of resources."""
+        try:
+            file = open(self.current_dir+"\\stats\\res_ranking"+str(cat)+".txt", "r")
+        except:
+            return ["","",0]
+        else:
+            data = json.loads(file.read())
+            file.close()
+            try:
+                return data[n]
+            except:
+                return ["","",0]
 

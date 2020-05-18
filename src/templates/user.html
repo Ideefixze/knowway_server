@@ -17,7 +17,9 @@
             <br>
             {% for key,value in user.getResourcePointsDict().items() %}
                 <hr>
-                <a href="{{key}}">{{key}}</a> : {{value[0]}} / {{value[1]}}
+                <a href="{{key}}">
+                    {{key|replace('http://127.0.0.1:5000/polona?title=', '')|replace('+',' ')|replace('http://127.0.0.1:5000/wiki?title=', '')|unquote}}
+                </a> : {{value[0]}} / {{value[1]}}
                 <br>
             {% endfor %}
             <br>

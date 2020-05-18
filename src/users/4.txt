@@ -1,21 +1,13 @@
 {
     "_User__id": 4,
-    "_User__username": "Dominik",
-    "_User__passwordHash": "bf3287fba669d11b2ed8c3130d3d3b324bfcdab93da82869d6eb05da334a5f31",
+    "_User__username": "Kanapka",
+    "_User__passwordHash": "9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
     "_User__resourcePoints": {
-        "http://127.0.0.1:5000/wiki?title=The+White+Horse%2C+Hertford": [
-            75.0,
-            104
-        ],
-        "http://127.0.0.1:5000/wiki?title=Superradiant+phase+transition": [
-            30.0,
-            403
-        ],
-        "http://127.0.0.1:5000/wiki?title=Poland": [
-            540.0,
-            1316
+        "http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu": [
+            525.0,
+            1030
         ]
     },
-    "_User__totalPoints": 0,
-    "_User__authCode": "2f5da8ce841d5f23b71412adac369bee732247a36c3383889addaad314419f5c"
+    "_User__totalPoints": 525.0,
+    "_User__authCode": "0491e2b5333b49034839d2e1795d73fe1d3ade8bf01a6ed5faf00b963fcb3075"
 }

@@ -5,9 +5,12 @@ import wikipedia
 import urllib.parse
 import polona as PolonaAPI
 from collections import namedtuple
-#
-#
+
 class Comment:
+    """
+    Simple class containing information about a single comment. 
+    Easy to expand and add new functionalities and data. 
+    """
 
     def __init__(self, comment_id:int, user_id:int, content:str):
         self.__id = comment_id
@@ -15,6 +18,9 @@ class Comment:
         self.__content = content
 
     def getCommentTuple(self):
+        """
+        Returns a tuple of [comment_id,user_id,content].
+        """
         return [self.__id, self.__who, self.__content]
 
     def __eq__(self, other):
@@ -23,22 +29,29 @@ class Comment:
 
 class Resource:
 
-    def __init__(self, link, categoryid):
+    def __init__(self, link, categoryid,recalc=True):
+        """
+        Basic constructor. All derived classes should have the same three starting arguments,
+        because loadFromJSON use cls(link,category,False) to initialize Resource without recalculating
+        point limit.
+        """
         self._link = link
         self._categoryid = categoryid
-        self._maxPoints = 0
+        self._maxPoints = 100
         self._comments = list()
-        
         self._visits = 0
     
     @classmethod
     def loadFromJSON(cls, data):
+        """
+        Loads resource from json dictionary. Doesn't recalculate point limit, but loads them from data.
+        """
         t = data['_title']
         l = data['_link']
         c = data['_categoryid']
         m = data['_maxPoints']
         v = data['_visits']
-        res = cls(l,c)
+        res = cls(l,c,False)
         res.setVisits(v)
         commentlist = list()
         for c in data["_comments"]:
@@ -82,10 +95,13 @@ class Resource:
         self._visits=v
 
     def addComment(self, cid:int, user_id:int, content:str):
+        """
+        Adds a new comment. Doesn't add duplicate comments.
+        """
         for i in self._comments:
             if(i.getCommentTuple()[2]==content):
                 return
-        #print(Comment(cid, user_id, content).getCommentTuple())
+
         self._comments.append(Comment(cid, user_id, content))
 
     def removeComment(self, cid):
@@ -94,10 +110,12 @@ class Resource:
                 self._comments.remove(c)
 
     def recalculateMaxPoints(self):
+        """
+        Basic method for recalculating new point limit. Each XResource should have it overridden.
+        """
         self._maxPoints=100
 
-    def getComments(self):
-        return self._comments
+    
 
     def serialize(self):
         return json.dumps(self, default=lambda  o: o.__dict__, sort_keys=False, indent=4)
@@ -106,10 +124,10 @@ class Resource:
 class WikipediaResource(Resource):
 
     def __init__(self, link,catid=1,recalc=True):
-        
         super().__init__(link, catid)
         self._title = link.split('/',-1)[-1].replace("wiki?title=",'')
         self._title = urllib.parse.unquote(self._title)
+
         try:
             w = wikipedia.WikipediaPage(self._title.replace('+',' '))
         except:
@@ -130,8 +148,11 @@ class PolonaResource(Resource):
         super().__init__(link, catid)
         self._title = link.split('/',-1)[-1].replace("polona?title=",'')
 
-        if(recalc):
-            self.recalculateMaxPoints()
+        try:
+            if(recalc):
+                self.recalculateMaxPoints()
+        except:
+            raise AssertionError
 
     def recalculateMaxPoints(self):
         self._maxPoints = len(PolonaAPI.PolonaScan(self._title))*10

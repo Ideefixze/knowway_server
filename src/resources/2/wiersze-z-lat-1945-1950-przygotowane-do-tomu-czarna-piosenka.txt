@@ -1,8 +1,0 @@
-{
-    "_title": "wiersze-z-lat-1945-1950-przygotowane-do-tomu-czarna-piosenka",
-    "_link": "http://127.0.0.1:5000/polona?title=wiersze-z-lat-1945-1950-przygotowane-do-tomu-czarna-piosenka",
-    "_categoryid": 2,
-    "_maxPoints": 1220,
-    "_comments": [],
-    "_visits": 1
-}

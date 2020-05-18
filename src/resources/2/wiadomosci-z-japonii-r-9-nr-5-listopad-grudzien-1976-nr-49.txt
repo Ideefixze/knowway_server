@@ -1,8 +1,0 @@
-{
-    "_title": "wiadomosci-z-japonii-r-9-nr-5-listopad-grudzien-1976-nr-49",
-    "_link": "http://127.0.0.1:5000/polona?title=wiadomosci-z-japonii-r-9-nr-5-listopad-grudzien-1976-nr-49",
-    "_categoryid": 2,
-    "_maxPoints": 80,
-    "_comments": [],
-    "_visits": 1
-}

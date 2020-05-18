@@ -1,8 +1,0 @@
-{
-    "_title": "polacy-na-dalekim-wschodzie",
-    "_link": "http://127.0.0.1:5000/polona?title=polacy-na-dalekim-wschodzie",
-    "_categoryid": 2,
-    "_maxPoints": 3460,
-    "_comments": [],
-    "_visits": 1
-}

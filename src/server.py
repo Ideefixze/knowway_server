@@ -11,8 +11,15 @@ import threading
 import routes
 import hasher
 import urllib.parse
+import json
 
 current_dir = os.path.dirname(__file__)
+
+def formatLink(link:str):
+    """Formats a link into the simplest possible form. This function should be always called before reading/saving from DB for consistency reasons."""
+    link = link.split("&page=",1)[0]  
+    link = link.split("#",1)[0]
+    return link
 
 #Server - singleton.
 class Server(object):
@@ -87,15 +94,20 @@ class Server(object):
     def resetServer(self):
         self.udb.deleteUserData()
         self.rdb.deleteResourceData()
+        try:
+            shutil.rmtree(self.current_dir+"\\stats")
+        except:
+            return
 
     #Given the direct link, find local resource in data base
     def getResource(self, link):
-        link = link.split("&page=",1)[0] 
+        link=formatLink(link)
         title = link.split("?title=",1)[1]
         title = urllib.parse.unquote(title) 
         return self.rdb.getResource(self.resfactory.DetermineCategory(link), title)
 
     def addPointsForUser(self, uid, auth, link, time):
+        link=formatLink(link)
         #Open file with user data
         try:
             f = open(current_dir+"\\users\\"+str(uid)+".txt", 'r')
@@ -128,7 +140,7 @@ class Server(object):
             return loadedUser.getResourcePointsForResource(link)
 
     def addComment(self, uid, content, link):
-
+        link=formatLink(link)
         localres = self.getResource(link)
         if(localres is None):
             localres = self.resfactory.ResourceFromLink(link)
@@ -141,26 +153,39 @@ class Server(object):
         localres.addComment(id, uid, content)
         self.rdb.saveResource(localres)
 
-    #given the comment list of [comment_id, user_id, content] create [username, content] for displaying
-    def getResourceFinalCommentList(self, comments):
+    #Given the link and title create [username, content] for displaying
+    def getResourceFinalCommentList(self, link, title):
+        """Returns a list of comments in form of [username,content]."""
+        comments = self.getCommentList(link, title)
         finalcommentlist = []
         for c in comments:
             finalcomment = []
             try:
                 finalcomment.append(self.getUser(c.getCommentTuple()[1]).getUsername())
             except:
-                finalcomment.append("Anonymous")
+                finalcomment.append("Deleted User")
 
             finalcomment.append(c.getCommentTuple()[2])
             finalcommentlist.append(finalcomment)
 
         return finalcommentlist
 
+    def getCommentList(self, link, title):
+        """Try to get comments for a resource, if no resource exist, return empty list."""
+        try:
+            comments=self.rdb.getResource(self.resfactory.DetermineCategory(link), title).getComments()
+        except:
+            comments=[]
+        
+        return comments
 
+    def recommendFromCat(self, n, cat, num):
+        """Returns an num number of n'ths items from ranking list of resources."""
+        recommendations = list()
+        for i in range(n, n+num):
+            recommendations.append(self.rdb.recommendFromCat(i,cat))
+        return recommendations
 
 if __name__ == '__main__':
     s = Server("127.0.0.1", 5000)
-    #s.resetServer()
-    #for i in range(0,1000):
-        #s.registerNewUser(str(str(i)+"user"), str(hash("password")))
     s.runServer()

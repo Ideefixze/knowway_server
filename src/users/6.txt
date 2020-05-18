@@ -1,13 +1,8 @@
 {
     "_User__id": 6,
-    "_User__username": "SSS",
-    "_User__passwordHash": "9834876dcfb05cb167a5c24953eba58c4ac89b1adf57f28f2f9d09af107ee8f0",
-    "_User__resourcePoints": {
-        "http://127.0.0.1:5000/wiki?title=Japan": [
-            60.0,
-            738
-        ]
-    },
-    "_User__totalPoints": 60.0,
-    "_User__authCode": "f3a169888ccd170b00797681dfdbe84e00e0bed997c0d0595b3e38eaaf960cc0"
+    "_User__username": "twoja",
+    "_User__passwordHash": "5c69be73e628d7fb42c0700a04356ea6fdb2fbb0069cbe02f6ad9851925bfe1d",
+    "_User__resourcePoints": {},
+    "_User__totalPoints": 0,
+    "_User__authCode": "a9c2113f2b363b7b4407debf33c48958714eff00ee5f9bd38558ff76719c2f7a"
 }

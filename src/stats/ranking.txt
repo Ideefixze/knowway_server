@@ -1,0 +1,1 @@
+[["Kanapka", 525.0], ["Dominik", 360.0], ["aaaaa", 165.0], ["czesc", 105.0], ["user1", 0], ["user2", 0], ["user3", 0], ["user4", 0], ["twoja", 0], ["ooooo", 0]]

@@ -1,0 +1,19 @@
+{
+    "_link": "http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu",
+    "_categoryid": 1,
+    "_maxPoints": 1030,
+    "_comments": [
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 8,
+            "_Comment__content": "spoko ziomek"
+        },
+        {
+            "_Comment__id": 0,
+            "_Comment__who": 9,
+            "_Comment__content": "spoko ziomek!!"
+        }
+    ],
+    "_visits": 4,
+    "_title": "Benjamin_Netanyahu"
+}

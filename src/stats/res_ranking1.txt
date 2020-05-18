@@ -1,0 +1,1 @@
+[["http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu", "Benjamin_Netanyahu", 4], ["http://127.0.0.1:5000/wiki?title=Charlemagne", "Charlemagne", 2]]

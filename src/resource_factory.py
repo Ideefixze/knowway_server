@@ -2,8 +2,13 @@ import resource
 import json
 
 class ResourceFactory(object):
-
+    """
+    Serves basic functionality for creating new Resources.
+    """
     def ResourceFromLink(self, link):
+        """
+        Creates a new resource from link (<domain>/<type>?title=) and recalculates automatically point limit.
+        """
         if("wiki?title=" in link):
             return resource.WikipediaResource(link)
         elif("polona?title=" in link):
@@ -12,6 +17,10 @@ class ResourceFactory(object):
             return None
 
     def DetermineCategory(self, link):
+        """
+        Returns a category from link. 
+        A shortcut function to skip making a new resource and then getting a category.
+        """
         if("wiki?title=" in link):
             return 1
         elif("polona?title=" in link):
@@ -19,12 +28,18 @@ class ResourceFactory(object):
         else:
             return 0
 
-    #Loads a Resource from JSON
-    #WARNING: it returs a base class rather than a WikipediaResource/PolonaResource
-    #use only for load/save purposes
-    #it is much faster solution than creating a new XResource from link in json
-    #because when you make a new specific Resource it recalculates maxPoints and that take a lot of time
-    def LoadResourceFromJSON(self, jsondata):
+    
+    def LoadResourceFromJSON(self, jsondata:str):
+        """
+        Loads a Resource from JSON and returns a corresponding type it doesnt recalculate points (to save a lot of time).
+        jsondata is a string of jsonfile read by Simple_DBs
+        """
         data = json.loads(jsondata)
-        r = resource.Resource.loadFromJSON(data)
+        c = data['_categoryid']
+        if(c==1):
+            r = resource.WikipediaResource.loadFromJSON(data)
+        elif(c==2):
+            r = resource.PolonaResource.loadFromJSON(data)
+        else:
+            r = resource.Resource.loadFromJSON(data)
         return r

@@ -1,6 +1,7 @@
 import requests
 import json
-
+import os
+current_dir = os.path.dirname(__file__)
 
 def PolonaGetFirst(title:str):
     #Find entity id by request
@@ -18,7 +19,7 @@ def PolonaScan(title:str):
     e_id = PolonaGetFirst(title)
 
     #Get data of an entity
-    URL='https://polona.pl/api/entities/'+e_id
+    URL='https://polona.pl/api/entities/'+e_id+'/'
 
     r = requests.get(URL,None)
     data = r.json()
@@ -34,7 +35,7 @@ def PolonaSlug(title:str):
     e_id = PolonaGetFirst(title)
 
     #Get data of an entity
-    URL='https://polona.pl/api/entities/'+e_id
+    URL='https://polona.pl/api/entities/'+e_id+'/'
 
     r = requests.get(URL,None)
     data = r.json()

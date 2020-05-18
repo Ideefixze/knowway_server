@@ -1,8 +1,0 @@
-{
-    "_title": "urna-z-popiolami-rekopisow-i-starodrukow-spalonych-przez-wojsko-niemieckie-w-roku-1944-w",
-    "_link": "http://127.0.0.1:5000/polona?title=urna-z-popiolami-rekopisow-i-starodrukow-spalonych-przez-wojsko-niemieckie-w-roku-1944-w",
-    "_categoryid": 2,
-    "_maxPoints": 140,
-    "_comments": [],
-    "_visits": 2
-}

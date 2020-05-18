@@ -1,45 +1,8 @@
 {
     "_User__id": 7,
-    "_User__username": "NowyUzytkownik",
-    "_User__passwordHash": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
-    "_User__resourcePoints": {
-        "http://127.0.0.1:5000/wiki?title=Ryom+Tae-ok": [
-            109,
-            109
-        ],
-        "http://127.0.0.1:5000/wiki?title=World+of+Warcraft": [
-            150.0,
-            588
-        ],
-        "http://localhost:5000/wiki?title=Masfout": [
-            75.0,
-            130
-        ],
-        "http://localhost:5000/wiki?title=United_Arab_Emirates": [
-            255.0,
-            931
-        ],
-        "http://localhost:5000/wiki?title=Poland": [
-            210.0,
-            1316
-        ],
-        "http://127.0.0.1:5000/wiki?title=Tubbergen": [
-            45.0,
-            116
-        ],
-        "http://127.0.0.1:5000/wiki?title=Netherlands": [
-            45.0,
-            1295
-        ],
-        "http://127.0.0.1:5000/wiki?title=Archduke+Joseph+Francis+of+Austria": [
-            60.0,
-            118
-        ],
-        "http://127.0.0.1:5000/wiki?title=Karvounari": [
-            45.0,
-            104
-        ]
-    },
-    "_User__totalPoints": 994.0,
-    "_User__authCode": "250a411d99c05a827f6e5fe571919ee5d1876d043c7fe73eef52b34fff852819"
+    "_User__username": "ooooo",
+    "_User__passwordHash": "1f3ce40415a2081fa3eee75fc39fff8e56c22270d1a978a7249b592dcebd20b4",
+    "_User__resourcePoints": {},
+    "_User__totalPoints": 0,
+    "_User__authCode": "aba96b19a00526e760efaf94113efc31a7c58854bf768531df6d09088ee20c69"
 }

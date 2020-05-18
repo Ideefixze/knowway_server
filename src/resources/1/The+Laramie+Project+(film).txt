@@ -1,8 +1,0 @@
-{
-    "_link": "http://127.0.0.1:5000/wiki?title=The+Laramie+Project+%28film%29",
-    "_categoryid": 1,
-    "_maxPoints": 120,
-    "_comments": [],
-    "_visits": 1,
-    "_title": "The+Laramie+Project+(film)"
-}

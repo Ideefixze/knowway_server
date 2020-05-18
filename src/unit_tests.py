@@ -87,11 +87,11 @@ class Tester(unittest.TestCase):
     def testPolonaInit(self):
         self.assertRaises(AssertionError, lambda: r.PolonaResource("www.wronglink.com"))
 
-        res1 = r.PolonaResource("https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/")
+        res1 = r.PolonaResource("http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0")
 
-        self.assertEqual("https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", res1.getLink())
+        self.assertEqual("http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye", res1.getLink())
         self.assertEqual(2, res1.getCategoryID()) #polona articles are always category 2
-        self.assertEqual(1470, res1.getMaxPoints()) #max points limit for polona books is equal to number of scans * 10 and this book has 147 scans
+        self.assertEqual(4960, res1.getMaxPoints()) #max points limit for polona books is equal to number of scans * 10 and this book has 147 scans
 
     def testRecalculateMaxPoints(self):
         res1 = r.Resource("link-to-some-resource", 22)
@@ -105,7 +105,7 @@ class Tester(unittest.TestCase):
         res2.recalculateMaxPoints()
         self.assertEqual(pointspre, res2.getMaxPoints()) 
 
-        res3 = r.PolonaResource("https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/")
+        res3 = r.PolonaResource("http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0")
         pointspre = res3.getMaxPoints()
         res3.recalculateMaxPoints()
         self.assertEqual(pointspre, res3.getMaxPoints())
@@ -201,75 +201,62 @@ class Tester(unittest.TestCase):
         uid = server.registerNewUser("user1","passwordhash1")
 
         #each minute browsing = 15 points
-        #from earlier test we know that this resource will be maximally worth 1470 points
-        self.assertEqual(150, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0))
+        #from earlier test we know that this resource will be maximally worth 4960 points
+        self.assertEqual(150, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 10.0)[0])
         #dont accept negative or 0 time or when authcode is incorrect
-        self.assertEqual(150, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", -30.0))
-        self.assertEqual(150, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 0.0))
-        self.assertEqual(150, server.addPointsForUser(uid, 1,"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 0.0))
+        self.assertEqual(150, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", -30.0)[0])
+        self.assertEqual(150, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 0.0)[0])
+        self.assertEqual(150, server.addPointsForUser(uid, 1,"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 0.0)[0])
 
-        self.assertEqual(300, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0))
-        self.assertEqual(675, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 25.0))
-        self.assertEqual(1470, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 5000.0))
+        self.assertEqual(300, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 10.0)[0])
+        self.assertEqual(675, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 25.0)[0])
+        self.assertEqual(4960, server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 5000.0)[0])
 
     #show the most popular resource in each category that has the highest number of unique visits
     def testRecommendedResource(self):
         server = s.Server("127.0.0.1", 5000)
         uid = server.registerNewUser("user1","passwordhash1")
 
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0)
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0)
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/opowiadanie-marynarskie,OTY0NjQzNjU/", 10.0)
+        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 10.0)
+        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 10.0)
+        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=karpaty-i-podkarpacie&page=0", 10.0)
 
         uid = server.registerNewUser("user2","passwordhash2")
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/opowiadanie-marynarskie,OTY0NjQzNjU/", 10.0)
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0)
+        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=pisma-adama-mickiewicza-t-5&page=0", 10.0)
+        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 10.0)
 
         uid = server.registerNewUser("user3","passwordhash3")
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/opowiadanie-marynarskie,OTY0NjQzNjU/", 10.0)
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/o-wulkanach-i-przyczynach-wulkanizmu,ODk3NDY4OTY/", 10.0)
+        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye&page=0", 10.0)
+        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/polona?title=karpaty-i-podkarpacie&page=0", 10.0)
 
-        self.assertEqual("https://polona.pl/item/opowiadanie-marynarskie,OTY0NjQzNjU/", server.recommendFromCat(0,2))
-        self.assertEqual("https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", server.recommendFromCat(1,2))
-        self.assertEqual("https://polona.pl/item/o-wulkanach-i-przyczynach-wulkanizmu,ODk3NDY4OTY/", server.recommendFromCat(2,2))
-        self.assertEqual("", server.recommendFromCat(3,2))
+        server.rdb.createRanking(2,False)
+        self.assertEqual([["http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye","dziela-wiliama-szekspira-t-9-komedye",3]], server.recommendFromCat(0,2,1))
+        self.assertEqual([["http://127.0.0.1:5000/polona?title=karpaty-i-podkarpacie","karpaty-i-podkarpacie",2]], server.recommendFromCat(1,2,1))
+        self.assertEqual([["http://127.0.0.1:5000/polona?title=pisma-adama-mickiewicza-t-5","pisma-adama-mickiewicza-t-5",1]], server.recommendFromCat(2,2,1))
+        self.assertEqual([["",0]], server.recommendFromCat(3,2,1))
 
-        self.assertEqual("", server.recommendFromCat(0,1)) #no wikipedia article has beed read
+        self.assertEqual([
+        ["http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye","dziela-wiliama-szekspira-t-9-komedye",3],
+        ["http://127.0.0.1:5000/polona?title=karpaty-i-podkarpacie","karpaty-i-podkarpacie",2],
+        ["http://127.0.0.1:5000/polona?title=pisma-adama-mickiewicza-t-5","pisma-adama-mickiewicza-t-5",1]], server.recommendFromCat(0,2,3))
+
+        server.rdb.createRanking(1,False)
+        self.assertEqual([["",0]], server.recommendFromCat(0,1,1)) #no wikipedia article has beed read
 
         server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu", 10.0)
 
-        self.assertEqual("http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu", server.recommendFromCat(0,1)) 
-        self.assertEqual("", server.recommendFromCat(1,1)) 
+        server.rdb.createRanking(1,False)
+        self.assertEqual([["http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu","Benjamin_Netanyahu",1]], server.recommendFromCat(0,1,1)) 
+        self.assertEqual([["",0]], server.recommendFromCat(1,1,1)) 
 
         server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/wiki?title=Colorado", 10.0)
 
-        self.assertEqual("http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu", server.recommendFromCat(0,1)) 
-        self.assertEqual("http://127.0.0.1:5000/wiki?title=Colorado", server.recommendFromCat(1,1)) 
-        self.assertEqual("", server.recommendFromCat(2,1)) 
+        server.rdb.createRanking(1,False)
+        self.assertEqual([["http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu","Benjamin_Netanyahu",1]], server.recommendFromCat(0,1,1)) 
+        self.assertEqual([["http://127.0.0.1:5000/wiki?title=Colorado","Colorado",1]], server.recommendFromCat(1,1,1)) 
+        self.assertEqual([["",0]], server.recommendFromCat(2,1,1)) 
 
-
-    #Everytime we add a point for a new link, we gotta add new link and calculate its maxpoints
-    def testAddingPointsIsAddingNewResource(self):
-        server = s.Server("127.0.0.1", 5000)
-
-        uid = server.registerNewUser("user1","passwordhash1")
-
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0)
-        self.assertEqual("https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", server.getResource(0).getLink())
-        self.assertEqual(1470, server.getResource(0).getMaxPoints())
-
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0)
-        self.assertEqual("https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", server.getResource(0).getLink())
-        self.assertEqual(1470, server.getResource(0).getMaxPoints())
-
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/pisma-adama-mickiewicza-t-5,NTE5MTk1/", 10.0)
-        self.assertRaises(server.getResource(1).getLink()) #trying to get unexisting item should raise error
-
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://facebook.com", 1.0)
-        self.assertRaises(server.getResource(1).getLink()) #only certain websites are added
-        
-        server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"https://polona.pl/item/gry-w-karty-dawniejsze-i-nowe-dokladne-sposoby-ich-prowadzenia-poprzedzone-krotka,ODQ5MTEzMDY/", 10.0)
-        self.assertEqual("https://polona.pl/item/gry-w-karty-dawniejsze-i-nowe-dokladne-sposoby-ich-prowadzenia-poprzedzone-krotka,ODQ5MTEzMDY/", server.getResource(1).getLink())
+        server.resetServer()
 
     
 if( __name__ == '__main__'):

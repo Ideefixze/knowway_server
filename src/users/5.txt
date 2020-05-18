@@ -1,29 +1,21 @@
 {
     "_User__id": 5,
-    "_User__username": "Wojtek",
-    "_User__passwordHash": "61be55a8e2f6b4e172338bddf184d6dbee29c98853e0a0485ecee7f27b9af0b4",
+    "_User__username": "czesc",
+    "_User__passwordHash": "54787483fa717549860ed4c575328f093fa0ec984e719efe27e8684d6e863bb2",
     "_User__resourcePoints": {
-        "http://127.0.0.1:5000/wiki?title=Ninja": [
+        "http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu": [
             45.0,
-            490
+            1030
         ],
-        "http://127.0.0.1:5000/wiki?title=Bondurant-Hustin+House": [
+        "http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye": [
+            45.0,
+            4960
+        ],
+        "http://127.0.0.1:5000/wiki?title=Charlemagne": [
             15.0,
-            104
-        ],
-        "http://127.0.0.1:5000/wiki?title=Hazel+Perfect": [
-            45.0,
-            122
-        ],
-        "http://127.0.0.1:5000/wiki?title=Canada": [
-            60.0,
-            750
-        ],
-        "http://127.0.0.1:5000/wiki?title=Japan": [
-            75.0,
-            738
+            912
         ]
     },
-    "_User__totalPoints": 240.0,
-    "_User__authCode": "e546ea1c7fdbff5ea2e349bb532fa93afb1282a6d0ead46e74e9976cec6d12cd"
+    "_User__totalPoints": 105.0,
+    "_User__authCode": "0403a9c2d98514e770837eca64b3b8cb06d176ef8ab63ca2a1c5e0b941143f3c"
 }

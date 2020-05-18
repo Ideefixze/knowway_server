@@ -1,25 +1,17 @@
 {
     "_User__id": 9,
-    "_User__username": "Witam",
-    "_User__passwordHash": "587dff1f72440ab053be2faa39313149fe84fd9ef4f096f50dcc5731c3759c9e",
+    "_User__username": "Dominik",
+    "_User__passwordHash": "71591b2745199301aaff165ca9fb3954cfc17edcacfe4515f280ae94597cd5ef",
     "_User__resourcePoints": {
-        "http://127.0.0.1:5000/polona?title=dziady-czesc-ii-i-iv-sonety-sonety-krymskie": [
-            75.0,
-            1020
+        "http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu": [
+            315.0,
+            1030
         ],
-        "http://127.0.0.1:5000/polona?title=afisz-inc-poniedz-20-x-wawa-humor": [
-            20,
-            20
-        ],
-        "http://127.0.0.1:5000/wiki?title=Iran": [
-            60.0,
-            1131
-        ],
-        "http://127.0.0.1:5000/wiki?title=Bird": [
-            30.0,
-            811
+        "http://127.0.0.1:5000/wiki?title=Charlemagne": [
+            45.0,
+            912
         ]
     },
-    "_User__totalPoints": 185.0,
-    "_User__authCode": "231e097fefea257a44130286a0fea95a4ca1ff1f9e6587f0fe771097e2e43eff"
+    "_User__totalPoints": 360.0,
+    "_User__authCode": "757a3c54e04bc377aa54b426ab6f97dbbfbabbd3aa02ac7870bdc224ffeacb6d"
 }
