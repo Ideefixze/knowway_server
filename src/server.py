@@ -1,5 +1,10 @@
+""" 
+Server class is a singleton that is a gateway to other classes and functionalities.
+Made by: Dominik Zimny for a Software Engineering project.
+"""
+
+
 import user as u
-import socket, errno
 import simple_db
 import resource_factory as rf
 from multiprocessing import Process
@@ -32,6 +37,8 @@ class Server(object):
         return Server.__instance
 
     def __new__(cls, *args, **kwargs):
+        """Note: Making a new server when it already exists, deletes all local data. 
+        This is because, so unit tests may run smoothly."""
         if Server.__instance == None:
             Server.__instance = object.__new__(cls)
             return Server.__instance
@@ -64,7 +71,7 @@ class Server(object):
         return file_count
 
     def registerNewUser(self, username, passwordHash):
-        
+        """Registers a new user and returns him (even if they exist)."""
         foundUser = self.scanUsername(username)
 
         if(foundUser is not None): 
@@ -75,7 +82,7 @@ class Server(object):
         self.saveUser(newuser)
         return i
 
-    #Wrapper methods that were here are now defined in Simple_DB class
+    #Wrapper methods that were here are now defined in Simple_DB classes
     def saveUser(self, userdata):
         self.udb.saveUser(userdata)
 
@@ -92,6 +99,7 @@ class Server(object):
         return self.udb.getUser(id)
 
     def resetServer(self):
+        """Deletes all local data: users, resources(comments, maxpoints, links) and stats."""
         self.udb.deleteUserData()
         self.rdb.deleteResourceData()
         try:
@@ -107,6 +115,7 @@ class Server(object):
         return self.rdb.getResource(self.resfactory.DetermineCategory(link), title)
 
     def addPointsForUser(self, uid, auth, link, time):
+        """Adds points for a user with id=uid. Gives points for a certain resource with an unique link."""
         link=formatLink(link)
         #Open file with user data
         try:
@@ -140,6 +149,7 @@ class Server(object):
             return loadedUser.getResourcePointsForResource(link)
 
     def addComment(self, uid, content, link):
+        """Adds comment with content from user with id=uid to a resource with an unique link."""
         link=formatLink(link)
         localres = self.getResource(link)
         if(localres is None):
@@ -185,6 +195,9 @@ class Server(object):
         for i in range(n, n+num):
             recommendations.append(self.rdb.recommendFromCat(i,cat))
         return recommendations
+
+    def ranking(self, n, num):
+        return self.udb.getTopPlayers(n,num)
 
 if __name__ == '__main__':
     s = Server("127.0.0.1", 5000)

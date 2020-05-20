@@ -1,10 +1,14 @@
+""" 
+Simple polona.pl request library for getting scans and other information. 
+Made by: Dominik Zimny for a Software Engineering project.
+"""
 import requests
 import json
 import os
 current_dir = os.path.dirname(__file__)
 
 def PolonaGetFirst(title:str):
-    #Find entity id by request
+    """Find entity id by request."""
     URL='https://polona.pl/api/entities/'
     PARAMS={'query':title, 'size':'1', 'public':'1'}
 
@@ -14,8 +18,8 @@ def PolonaGetFirst(title:str):
     return e_id
 
 
-#Returns list of scans for a given title in polona
 def PolonaScan(title:str):
+    """Returns list of scans for a given title in Polona."""
     e_id = PolonaGetFirst(title)
 
     #Get data of an entity
@@ -30,8 +34,9 @@ def PolonaScan(title:str):
     
     return scanlist
 
-#Returns a slug name for a searched title
+
 def PolonaSlug(title:str):
+    """Returns a slug name for a searched title in Polona."""
     e_id = PolonaGetFirst(title)
 
     #Get data of an entity
@@ -43,6 +48,7 @@ def PolonaSlug(title:str):
     return data['slug']
 
 def PolonaScanIsPublic(title:str):
+    """Returns if a Polona resource is public: can scans be obtained by request?"""
     URL='https://polona.pl/api/entities/'
     PARAMS={'query':title, 'size':'1', 'public':'1'}
 

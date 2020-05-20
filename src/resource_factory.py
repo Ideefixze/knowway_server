@@ -1,3 +1,8 @@
+""" 
+Simple implementation of Factory design pattern for determining which resource to make from link of form: <domain>/<type>?<data>
+Made by: Dominik Zimny for a Software Engineering project.
+"""
+
 import resource
 import json
 

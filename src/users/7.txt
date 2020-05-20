@@ -1,8 +1,0 @@
-{
-    "_User__id": 7,
-    "_User__username": "ooooo",
-    "_User__passwordHash": "1f3ce40415a2081fa3eee75fc39fff8e56c22270d1a978a7249b592dcebd20b4",
-    "_User__resourcePoints": {},
-    "_User__totalPoints": 0,
-    "_User__authCode": "aba96b19a00526e760efaf94113efc31a7c58854bf768531df6d09088ee20c69"
-}

@@ -1,3 +1,8 @@
+""" 
+File routes.py contains responses from server to a client that makes a request. 
+Made by: Dominik Zimny for a Software Engineering project.
+"""
+
 from flask import Flask, request, render_template, redirect, url_for, session, Markup
 import forms as f
 import config as c
@@ -13,17 +18,22 @@ app.config['SECRET_KEY'] = "knowway-secret"
 app.use_reloader=False
 app.jinja_env.filters['unquote'] = lambda u: urllib.parse.unquote(u)
 
+TITLE = 'KnowWay!'
+
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', title='KnowWay!')
+    return render_template('index.html', title=TITLE)
 
+#Handles loing requests
 @app.route('/login', methods=['GET','POST'])
 def login():
     error = ""
+    #If you are logged in, just proceed
     if(session.get('auth')):
         return redirect(url_for('main'))
 
+    #Handle login form
     form = f.LoginForm()
     if request.method == 'POST':
         user = SERVER.scanLogin(request.form['username'], hasher.hash(request.form['password']))
@@ -31,21 +41,25 @@ def login():
         if user is None:
             error = 'Invalid Credentials.'
         else:
-            session['auth'] = auth.getAuthCode()
+            session['auth'] = user.getAuthCode()
             return redirect(url_for('main'))
 
-    return render_template('login.html', title='KnowWay!',form=form,error=error)
+    return render_template('login.html', title=TITLE,form=form,error=error)
 
+#Register user.
 @app.route('/register', methods=['GET','POST'])
 def register():
+
     error = ""
+    #Hey mate, if you are logged in, you don't have to register...
     if(session.get('auth')):
         return redirect(url_for('main'))
 
+    #Handle post request from register form
     form = f.RegisterForm()
     if request.method == 'POST':
 
-        user = SERVER.scanUsername(request.form['username'])
+        user = SERVER.scanUsername(request.form['username']) #get local user
         correctPassword = (hasher.hash(request.form['password']) == hasher.hash(request.form['password2']))
 
         if user is None and correctPassword == True and form.validate_on_submit():
@@ -61,8 +75,9 @@ def register():
                 error="Username minimum length is 5 and password should have at least 8 characters!"
     
 
-    return render_template('register.html', title='KnowWay!',form=form,error=error)
+    return render_template('register.html', title=TITLE,form=form,error=error)
 
+#Logout user. Removes 'auth' from session.
 @app.route('/logout')
 def logout():
     session.pop('auth')
@@ -99,7 +114,7 @@ def wiki():
 
     finalcommentlist=SERVER.getResourceFinalCommentList(request.base_url+"?title="+title, title)
     
-    return render_template('wiki.html', title='KnowWay!', username=username, comments=finalcommentlist, sourceHTML = Markup(w.html()), formAddComment=f.AddCommentForm())
+    return render_template('wiki.html', title=TITLE, username=username, comments=finalcommentlist, sourceHTML = Markup(w.html()), formAddComment=f.AddCommentForm())
 
 
 @app.route('/polona', methods=['GET','POST'])
@@ -153,26 +168,34 @@ def polona():
     finalcommentlist=SERVER.getResourceFinalCommentList(request.base_url+"?title="+title, title)
 
     url = url_for('polona')+"?title="+slug
-    return render_template('polona.html', title='KnowWay!', username=username, comments=finalcommentlist, imgsrc=renderpagesrc, pages=len(scanlist), url=url, prevpage=str(int(page)-1),nextpage=str(int(page)+1), formAddComment=f.AddCommentForm())
+    return render_template('polona.html', title=TITLE, username=username, comments=finalcommentlist, imgsrc=renderpagesrc, pages=len(scanlist), url=url, prevpage=str(int(page)-1),nextpage=str(int(page)+1), formAddComment=f.AddCommentForm())
 
 #Because links in wikipedia pages are in format /wiki/<title> and we are using /wiki?title=, redirect them to meet our expectations
 @app.route('/wiki/<title>')
 def wiki_redirect(title):
     return redirect(url_for('wiki', **{'title':title}))
 
+#User profile
 @app.route('/user/<username>')
 def user_profile(username):
-    return render_template('user.html', title='KnowWay!', user=SERVER.scanUsername(username))
+    return render_template('user.html', title=TITLE, user=SERVER.scanUsername(username))
 
+#Shows top 50 users
+@app.route('/ranking')
+def ranking():
+    return render_template('ranking.html', title=TITLE, ranking=SERVER.ranking(0,50))
 
+#Main page: handles searches
 @app.route('/main', methods=['GET','POST'])
 def main():
     error = ''
     if(session.get('auth') is None):
         return redirect(url_for('login'))
 
+    #Find recommendations
     wikiRecommended = SERVER.recommendFromCat(0,1,5)
     polonaRecommended = SERVER.recommendFromCat(0,2,5)
+
     #Find wikipedia/polona resource
     if(request.method=='POST'):
         try:
@@ -193,11 +216,11 @@ def main():
                 return redirect(url_for('polona', **{'title':findtitle}))
     
     username = SERVER.scanAuth(session.get('auth')).getUsername()
-    return render_template('main.html', title='KnowWay!', username=username, formFindWikipedia=f.FindWikipediaForm(), wikiRecommended=wikiRecommended, formFindPolona=f.FindPolonaForm(), polonaRecommended=polonaRecommended, error=error)
+    return render_template('main.html', title=TITLE, username=username, formFindWikipedia=f.FindWikipediaForm(), wikiRecommended=wikiRecommended, formFindPolona=f.FindPolonaForm(), polonaRecommended=polonaRecommended, error=error)
 
 @app.route('/addPoints', methods=['GET','POST'])
 def addPoints():
-
+    """Adds points if got a post request [link,time]. Returns string: points/maxPoints. """
     if request.method == 'POST':
         link = request.values.get('link')
         time = request.values.get('time')
@@ -207,10 +230,12 @@ def addPoints():
     else:
         return "0/0"
 
+#Error: given resource has been declared as private by the owner. Search another one.
 @app.route('/no_resource')
 def no_resource():
     return render_template('nores.html')
 
+#Error: couldn't get data for the resource. Search another one.
 @app.route('/get_data')
 def get_data():
     return render_template('getdata.html')

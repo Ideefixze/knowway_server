@@ -1,3 +1,8 @@
+""" 
+Contains classes: Comment, Resource and all child classes of Resource (WikipediaResource, PolonaResource).
+Made by: Dominik Zimny for a Software Engineering project.
+"""
+
 import json
 import user
 import requests

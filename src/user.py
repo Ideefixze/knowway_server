@@ -1,9 +1,10 @@
+""" 
+User class contains data about single user and all nescessary functionalities
+Made by: Dominik Zimny for a Software Engineering project.
+"""
 import json
 import hasher
-#
-# User class 
-# contains data about single user and all nescessary functionalities
-#
+
 class User:
     def __init__(self, id, username, passwordHash, resourcePoints, totalPoints, authCode):
         self.__id=id
@@ -15,6 +16,7 @@ class User:
     
     @classmethod
     def loadFromJSON(cls, jsonSerial):
+        """From jsonSerial string of json format loads a new User and returns them."""
         data = json.loads(jsonSerial)
         id = data["_User__id"]
         username = data["_User__username"]
@@ -26,6 +28,7 @@ class User:
 
     @classmethod 
     def registerNewUser(cls, uid, uusername, upasswordHash):
+        """Creates a new user from the given data."""
         id=uid
         username=uusername
         passwordHash=upasswordHash
@@ -56,27 +59,24 @@ class User:
         return self.__resourcePoints
 
     def getResourcePointsForResource(self, link):
+        """Returns a tuple from the resourcePoints dict [points,maxpoints]. If it doesn't exist yet return [0,0]."""
         if(link in self.__resourcePoints.keys()):
             return self.__resourcePoints[link]
         else:
             return [0,0]
 
-    def printDebugInfo(self):
-        print("["+str(self.__id)+"] Username: "+self.__username +", auth ("+self.__authCode+"), passwordHash = "+self.__passwordHash)
-        print("Total points: "+str(self.__totalPoints) + ", in particular: ")
-        print(self.__resourcePoints)
-
     def __str__(self):
         return "("+self.__username+") has got "+str(self.__totalPoints)+" points."
 
     def serialize(self):
+        """Serializes User as a JSON string."""
         return json.dumps(self, default=lambda  o: o.__dict__, sort_keys=False, indent=4)
 
     def __eq__(self, other):
         return hash(self.serialize())==hash(other.serialize())
 
     def addPointsForResource(self, link, points, maxPoints):
-
+        """Adds points for a user for a resource with a given link. Makes sure that points will not be greater than maxPoints."""
         if(link in self.__resourcePoints):
             self.__resourcePoints[link][0] += points
             self.__resourcePoints[link][1] = maxPoints
@@ -84,7 +84,8 @@ class User:
             self.__resourcePoints[link] = [points, maxPoints]
             
         self.__totalPoints += points
-        #If maximum points for resource has been obtained, reduce overflow
+
+        #If maximum points for the resource has been obtained, remove overflow
         if(self.__resourcePoints[link][0]>self.__resourcePoints[link][1]):
             self.__totalPoints -= self.__resourcePoints[link][0]-self.__resourcePoints[link][1] 
             self.__resourcePoints[link][0]=self.__resourcePoints[link][1] 

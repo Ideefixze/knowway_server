@@ -1,15 +1,15 @@
 .resbox{
-    width: 33%;
+    width: 25%;
     margin-top: 50px;
     margin-bottom: 50px;
     display: inline-block;
 }
 
 .signbox{
-    width: 33%;
+    width: 25%;
     border: 2px solid black;
     border-radius: 8px;
-    background-color:#1568a0;
+    background-color:#95c5e5;
     display: inline-block;
     text-align: center;
 }
@@ -30,4 +30,8 @@
 .container{
     width: 100%;
     text-align: center;
+}
+
+.menu {
+    font-size: 24pt;
 }

@@ -1,8 +1,0 @@
-{
-    "_link": "http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye",
-    "_categoryid": 2,
-    "_maxPoints": 4960,
-    "_comments": [],
-    "_visits": 1,
-    "_title": "dziela-wiliama-szekspira-t-9-komedye"
-}

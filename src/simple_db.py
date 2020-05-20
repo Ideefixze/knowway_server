@@ -1,3 +1,8 @@
+""" 
+File simple_db.py contains two wrapper classes for handling Data Base write and read operations. 
+Made by: Dominik Zimny for a Software Engineering project.
+"""
+
 import user as u
 import resource as r
 import resource_factory as rf
@@ -26,6 +31,7 @@ class Simple_DB_User(object):
         self.createRanking()
 
     def getUser(self, id):
+        """Returns the user with given id."""
         try:
             datafile = open(self.current_dir+"\\users\\"+str(id)+".txt", "r")
         except:
@@ -37,11 +43,13 @@ class Simple_DB_User(object):
             return user
 
     def deleteUserData(self):
+        """Deletes all user data."""
         files = glob.glob(self.current_dir+"\\users\\*")
         for f in files:
             os.remove(f)
 
     def scan(self, fun, check):
+        """Performs a scan. Goes through all user files and checks if loadedUser meets certain criteria given by function: fun with tuple of data check."""
         for filename in os.listdir(self.current_dir+"\\users\\"):
             with open(os.path.join(self.current_dir+"\\users\\", filename), 'r') as f:
                 loadedUser = u.User.loadFromJSON(f.read())
@@ -50,11 +58,14 @@ class Simple_DB_User(object):
         return None
 
     def saveUser(self, userdata):
+        """Saves user as a file containing JSON."""
         saveFile = open(self.current_dir+"\\users\\"+str(userdata.getId())+".txt", "w+")
         saveFile.write(userdata.serialize())
         saveFile.close()
 
     def createRanking(self,repeat=True):
+        """Creates ranking of users by total points. Use repeat=False to do it just once. 
+        Use repeat=True(default) to repeat this method every UPDATE_TIME seconds."""
         if(repeat):
             threading.Timer(UPDATE_TIME, self.createRanking).start()
 
@@ -69,6 +80,21 @@ class Simple_DB_User(object):
         saveFile.write(json.dumps(users))
         saveFile.close()
 
+    def getTopPlayers(self, pos, number):
+        """Returns an number of [username, points] starting at pos from user ranking file."""
+        try:
+            file = open(self.current_dir+"\\stats\\ranking.txt", "r")
+        except:
+            return [["",0]]
+        else:
+            data = json.loads(file.read())
+            file.close()
+            try:
+                return data[pos:pos+number]
+            except:
+                return [["",0]]
+
+
 
 #Simple DB class for managing resource comments
 class Simple_DB_Resource(object):
@@ -81,10 +107,11 @@ class Simple_DB_Resource(object):
         self.createRanking(2)
 
     def getResource(self, cat, title):
+        """Returns a resource with a given title and category. 
+        Returns None if it hasn't been found.""" 
         try:
             datafile = open(self.current_dir+"\\resources\\"+str(cat)+"\\"+str(title)+".txt", "r")
         except:
-            #print("Unable to find: "+str(cat)+"\\"+str(title)+".txt!")
             return None
         else:
             res = self.res_factory.LoadResourceFromJSON(datafile.read())
@@ -92,12 +119,14 @@ class Simple_DB_Resource(object):
             return res
 
     def deleteResourceData(self):
+        """Deletes all local resource data: comments, link, maxPoints etc."""
         try:
             shutil.rmtree(self.current_dir+"\\resources")
         except:
             return
 
     def saveResource(self, res):
+        """Saves resource locally. Overwrites if it already exists."""
         filename = self.current_dir+"\\resources\\"+str(res.getCategoryID())+"\\"+str(res.getTitle())+".txt"
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         try:
@@ -110,7 +139,8 @@ class Simple_DB_Resource(object):
             savefile.close()
 
     def createRanking(self, catid, repeat=True):
-        
+        """Creates ranking for a given category by unique visit number. Use repeat=False to do it just once. 
+        Use repeat=True(default) to repeat this method every UPDATE_TIME seconds."""
         catid = str(catid)
 
         if(repeat):

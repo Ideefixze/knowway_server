@@ -1,3 +1,8 @@
+""" 
+WTForms to use in templates.
+Made by: Dominik Zimny for a Software Engineering project.
+"""
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length

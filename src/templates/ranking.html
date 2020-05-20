@@ -11,16 +11,12 @@
         </div>
         <div class="container">
             <div class="signbox">
-                <br>
-                {{ user.getUsername() }} 
-                <br>
-                {{ user.getTotalPoints() }} Pts.
-                <br>
-                {% for key,value in user.getResourcePointsDict().items() %}
-                    <hr>
-                    <a href="{{key}}">
-                        {{key|replace('http://127.0.0.1:5000/polona?title=', '')|replace('+',' ')|replace('http://127.0.0.1:5000/wiki?title=', '')|unquote}}
-                    </a> : {{value[0]}} / {{value[1]}}
+                {% for user in ranking %}
+                <hr>    
+                    {{loop.index}}. 
+                    <a href="user/{{user[0]}}">
+                        {{user[0]}}
+                    </a> : {{user[1]}} pts.
                     <br>
                 {% endfor %}
                 <br>

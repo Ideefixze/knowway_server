@@ -1,8 +1,0 @@
-{
-    "_User__id": 1,
-    "_User__username": "user2",
-    "_User__passwordHash": "passwordhash1",
-    "_User__resourcePoints": {},
-    "_User__totalPoints": 0,
-    "_User__authCode": "5c49a046ef76642872211def7d460ced30f316496ca454ea41d007ffacb4aa3c"
-}
