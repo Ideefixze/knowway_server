@@ -5,7 +5,6 @@ Made by: Dominik Zimny for a Software Engineering project.
 
 from flask import Flask, request, render_template, redirect, url_for, session, Markup
 import forms as f
-import config as c
 import hashlib
 import hasher
 import wikipedia
@@ -13,7 +12,7 @@ import polona as PolonaAPI
 import time as te
 import urllib
 
-app = Flask("server")
+app = Flask("KnowWay")
 app.config['SECRET_KEY'] = "knowway-secret"
 app.use_reloader=False
 app.jinja_env.filters['unquote'] = lambda u: urllib.parse.unquote(u)
