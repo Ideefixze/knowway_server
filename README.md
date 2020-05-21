@@ -15,7 +15,7 @@ Python3
 Flask
 wikipedia python API
 ```
-- **Python3** - install from https://www.python.org/download/releases/3.0/
+- **Python3** - install from https://www.python.org/downloads/
 - **Flask** - ```pip install Flask``` on Windows CMD, or use guide: https://flask.palletsprojects.com/en/1.1.x/installation/
 We won't need virtual environment since project doesn't have many dependencies.
 - **Wikipedia API** - ```pip install Wikipedia``` or use guide: https://pypi.org/project/wikipedia/
