@@ -1,5 +1,7 @@
 # KnowWay!
 the gamified educational resource browser <br>Software Engineering University Project by Dominik Zimny
+![KnowWay!](https://i.imgur.com/jlQpgHa.png)
+
 ## Basic functionalities
 Allows you to host a HTTP server that will contain simple website. Currently implemented functionalities:
 - register, login
