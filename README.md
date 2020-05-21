@@ -12,13 +12,22 @@ Allows you to host a HTTP server that will contain simple website. Currently imp
 ### Requirements
 ```
 Python3
-Flask
-wikipedia python API
+Flask_WTF==0.14.3
+Flask==1.1.2
+wikipedia==1.4.0
+WTForms==2.3.1
+requests==2.23.0
 ```
 - **Python3** - install from https://www.python.org/downloads/
 - **Flask** - ```pip install Flask``` on Windows CMD, or use guide: https://flask.palletsprojects.com/en/1.1.x/installation/
 We won't need virtual environment since project doesn't have many dependencies.
+- **Flask_WTF** - ```pip install Flask-WTF``
+- **requests** - ```pip install requests```
+- **WTForms** - ```pip install WTForms```
 - **Wikipedia API** - ```pip install Wikipedia``` or use guide: https://pypi.org/project/wikipedia/
+
+Change ip and port at the bottom of the server.py file or just let it be 127.0.0.1:5000.
+Run server.py with cmd using ```python.exe <directory>/server.py``` and go ***http://127.0.0.1:5000/*** in your browser.
 
 
 ## Known problems, bugs etc.
