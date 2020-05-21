@@ -26,7 +26,7 @@ We won't need virtual environment since project doesn't have many dependencies.
 - **Flask_WTF** - ```pip install Flask-WTF```
 - **requests** - ```pip install requests```
 - **WTForms** - ```pip install WTForms```
-- **Wikipedia API** - ```pip install Wikipedia``` or use guide: https://pypi.org/project/wikipedia/
+- **Wikipedia API** - ```pip install wikipedia``` or use guide: https://pypi.org/project/wikipedia/
 ### Instruction
 Change ip and port at the bottom of the server.py file or just let it be 127.0.0.1:5000.<br>
 Run server.py with cmd using ```python.exe <directory>/server.py``` and go ***http://127.0.0.1:5000/*** in your browser.
