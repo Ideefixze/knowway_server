@@ -35,7 +35,6 @@ class Simple_DB_User(object):
         try:
             datafile = open(self.current_dir+"\\users\\"+str(id)+".txt", "r")
         except:
-            #print("Wrong id!")
             return None
         else:
             user = u.User.loadFromJSON(datafile.read())

@@ -1,5 +1,6 @@
 """ 
 Server class is a singleton that is a gateway to other classes and functionalities.
+
 Made by: Dominik Zimny for a Software Engineering project.
 """
 
@@ -56,7 +57,6 @@ class Server(object):
         self.udb = simple_db.Simple_DB_User()
         self.rdb = simple_db.Simple_DB_Resource()
         self.resfactory = rf.ResourceFactory()
-        #self.servproc.setDaemon(True)
 
     def runServer(self):
         print("Starting up server...")

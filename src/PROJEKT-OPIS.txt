@@ -1,0 +1,46 @@
+Projekt jest w g³ównej mierze obiektowy, to znaczy zawiera klasy, ale ma³o dziedziczenia. 
+
+Zastosowa³em zasady SOLID:
+S - klasa Resource/User nie martwi siê o zapisywanie na dysku a jedynie o rzeczy jej dotycz¹ce. Podobnie jest z klasami Simple_DB, które maj¹ jedynie za zadanie odczytywaæ i zapisywaæ dane na dysku
+O - klasy s¹ otwarte na rozszerzenia ale ich zmiana k³opotliwa. Nie by³oby problemem stworzenie nowych funkcjonalnoœci do klas i nowych typów zasobów jak i przekierowañ serwera HTTP. Przyk³ad: na samym koñcu projektu implementowa³em ranking, zatem doda³em funkcjonalnoœæ do klas Simple_DB, która co minutê tworzy ranking i zapisuje w pliku txt. Serwer natomiast prosi o odczytanie przez bazê danych pierwsze X pozycji rankingu i renderuje template HTML przesy³aj¹c u¿ytkownikowi. Ca³y ten 'ficzer' by³ prosty do dodania.
+L - stosujê klasê bazow¹ Resource, która jest u¿ywana przez inne klasy i nie posiada ona zale¿noœci od klasy pochodnej (Wikipedia, Polona).
+I - w projekcie nie stosujê interfejsów, poniewa¿ uzna³em to za zbêdne.
+D - z³ama³em t¹ zasadê w Server i klasami Simple_DB_User oraz Simple_DB_Resource œwiadomie, poniewa¿ uzna³em, ¿e klasa Simple_DB by³aby zbyt ogólna: sposób dzia³ania na User oraz Resource móg³ siê znacz¹co ró¿niæ a taka abstrakcja (moim zdaniem) by³aby zbêdn¹, bior¹c pod uwagê te¿ skalê projektu oraz fakt, ¿e owe Simple_DB nie bêd¹ wykorzystywane nigdzie indziej ni¿ w klasie Server.
+
+
+Zastosowa³em dwa wzorce projektowe:
+
+Singleton: klasa Server powinna byæ tylko jedna jedyna w trakcie uruchomienia programu oraz powinna byæ widoczna przez inne klasy. By³ by problem jakby programista uruchomi³ serwer dwukrotnie i generowa³oby to b³êdy.
+Factory: ResourceFactory tworzy odpowiedni Resource z linku (<domena>/<typ>?<dane zapytania>) oraz tworzy odpowiedni Resource z pliku JSON.
+
+(Komenatrze dlaczego Python da³em w komentarzu na Pegazie i Pan nie zauwa¿y³.)
+
+Jak uruchomiæ?
+Wymagania:
+
+Python3
+oraz modu³y:
+Flask_WTF==0.14.3
+Flask==1.1.2
+wikipedia==1.4.0
+WTForms==2.3.1
+requests==2.23.0
+
+    Python3 - https://www.python.org/downloads/
+    Flask - pip install Flask na windowsowym CMD lub: https://flask.palletsprojects.com/en/1.1.x/installation/ 
+	Nie potrzebujemy virtual environment bo nie mamy zbyt wielu zale¿noœci.
+    Flask_WTF - pip install Flask-WTF
+    requests - pip install requests
+    WTForms - pip install WTForms
+    Wikipedia API - pip install wikipedia albo: https://pypi.org/project/wikipedia/
+
+Instrukcja:
+
+Zmien opcjonalnie ip i port na dole pliku server.py albo zostaw 127.0.0.1:5000.
+Uruchom server.py uzywajac cmd -> python.exe <directory>/server.py i wejdŸ http://127.0.0.1:5000/ w przegl¹darce.
+Zamknij server Ctrl+C.
+
+By uruchomiæ unit-testy, które siê zmieni³y: python.exe <directory>/unit_tests.py.
+
+Przed jakimkolwiek uruchomieniem:
+Pamiêtaj by upewniæ siê, ¿e folder stats oraz users istnieje i je¿eli testujesz, ¿e jest pusty!

@@ -233,7 +233,7 @@ class Tester(unittest.TestCase):
         self.assertEqual([["http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye","dziela-wiliama-szekspira-t-9-komedye",3]], server.recommendFromCat(0,2,1))
         self.assertEqual([["http://127.0.0.1:5000/polona?title=karpaty-i-podkarpacie","karpaty-i-podkarpacie",2]], server.recommendFromCat(1,2,1))
         self.assertEqual([["http://127.0.0.1:5000/polona?title=pisma-adama-mickiewicza-t-5","pisma-adama-mickiewicza-t-5",1]], server.recommendFromCat(2,2,1))
-        self.assertEqual([["",0]], server.recommendFromCat(3,2,1))
+        self.assertEqual([["","",0]], server.recommendFromCat(3,2,1))
 
         self.assertEqual([
         ["http://127.0.0.1:5000/polona?title=dziela-wiliama-szekspira-t-9-komedye","dziela-wiliama-szekspira-t-9-komedye",3],
@@ -241,20 +241,20 @@ class Tester(unittest.TestCase):
         ["http://127.0.0.1:5000/polona?title=pisma-adama-mickiewicza-t-5","pisma-adama-mickiewicza-t-5",1]], server.recommendFromCat(0,2,3))
 
         server.rdb.createRanking(1,False)
-        self.assertEqual([["",0]], server.recommendFromCat(0,1,1)) #no wikipedia article has beed read
+        self.assertEqual([["","",0]], server.recommendFromCat(0,1,1)) #no wikipedia article has beed read
 
         server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu", 10.0)
 
         server.rdb.createRanking(1,False)
         self.assertEqual([["http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu","Benjamin_Netanyahu",1]], server.recommendFromCat(0,1,1)) 
-        self.assertEqual([["",0]], server.recommendFromCat(1,1,1)) 
+        self.assertEqual([["","",0]], server.recommendFromCat(1,1,1)) 
 
         server.addPointsForUser(uid, server.getUser(uid).getAuthCode(),"http://127.0.0.1:5000/wiki?title=Colorado", 10.0)
 
         server.rdb.createRanking(1,False)
         self.assertEqual([["http://127.0.0.1:5000/wiki?title=Benjamin_Netanyahu","Benjamin_Netanyahu",1]], server.recommendFromCat(0,1,1)) 
         self.assertEqual([["http://127.0.0.1:5000/wiki?title=Colorado","Colorado",1]], server.recommendFromCat(1,1,1)) 
-        self.assertEqual([["",0]], server.recommendFromCat(2,1,1)) 
+        self.assertEqual([["","",0]], server.recommendFromCat(2,1,1)) 
 
         server.resetServer()
 
