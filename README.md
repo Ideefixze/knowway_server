@@ -28,7 +28,7 @@ We won't need virtual environment since project doesn't have many dependencies.
 - **WTForms** - ```pip install WTForms```
 - **Wikipedia API** - ```pip install wikipedia``` or use guide: https://pypi.org/project/wikipedia/
 ### Instruction
-Add environmental variable at <app directory>/src FLASK_APP="server.py"
+Add environmental variable at <app directory>/src FLASK_APP=server.py
 Run server.py with cmd using ```python.exe <directory>/server.py``` and go ***http://127.0.0.1:5000/*** in your browser.
 
 
