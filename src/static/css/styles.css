@@ -32,6 +32,14 @@
     text-align: center;
 }
 
+.commentbox{
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #95c5e5;
+    text-align:center;
+    position: fixed;
+}
+
 .menu {
     font-size: 24pt;
 }
