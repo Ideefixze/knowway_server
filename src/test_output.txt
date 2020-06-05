@@ -1,0 +1,20 @@
+test11RegisterAndLogin (__main__.KnowWayTests) ... ok
+test12SearchWiki (__main__.KnowWayTests) ... ok
+test13SearchPolona (__main__.KnowWayTests) ... ok
+test21AddComment (__main__.KnowWayTests) ... ok
+test22AddCommentTwoUsers (__main__.KnowWayTests) ... ok
+test23AddCommentThreeUsers (__main__.KnowWayTests) ... ok
+test31SeeViews (__main__.KnowWayTests) ... ok
+test32SeeViews (__main__.KnowWayTests) ... ok
+test33NewUserSeeViews (__main__.KnowWayTests) ... ok
+test41PointAdding (__main__.KnowWayTests) ... ok
+test42PointAdding (__main__.KnowWayTests) ... ok
+test43PointAdding (__main__.KnowWayTests) ... ok
+test61CheckRanking (__main__.KnowWayTests) ... ok
+test62NewLeader (__main__.KnowWayTests) ... ok
+test63Consistency (__main__.KnowWayTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1532.235s
+
+OK

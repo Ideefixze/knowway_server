@@ -37,8 +37,7 @@ Nie potrzebujemy virtual environment bo nie mamy zbyt wielu zaleønoúci.
 Instrukcja:
 Przed jakimkolwiek uruchomieniem:
 PamiÍtaj by upewniÊ siÍ, øe folder stats, resources oraz users istnieje w folderze src i jeøeli testujesz, øe jest pusty!
-Dodaj zmiennπ úrodowiskowπ: C:\path\to\app>set FLASK_APP=server.py
-Zmien opcjonalnie ip i port na dole pliku server.py albo zostaw 127.0.0.1:5000.
+Dodaj zmiennπ úrodowiskowπ: C:\path\to\app\src>set FLASK_APP=server.py
 Uruchom server.py uzywajac cmd -> python.exe <directory>/server.py i wejdü http://127.0.0.1:5000/ w przeglπdarce.
 Zamknij server Ctrl+C.
 

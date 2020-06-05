@@ -1,0 +1,178 @@
+Wymaganie 1.
+"U¿ytkownik powinien mieæ dostêp do linków z materia³ami edukacyjnymi i mo¿liwoœæ przegl¹dania ich bezpoœrednio w podoknie serwisu."
+
+Test 1.
+Tytu³: Rejestracja
+Opis: By móc przegl¹daæ, u¿ytkownik musi mieæ mo¿liwoœæ za³o¿enia konta i wejœcie na stronê g³ówn¹ aplikacji
+Wejœcie: U¿ytkownik wchodzi pierwszy raz na stronê g³ówn¹ (index.html)
+Kroki: 
+1. WejdŸ w "Register"
+2. WprowadŸ dane (username, password1, password2)
+3. ZatwierdŸ
+
+Oczekiwany rezultat i warunek koñcowy: jesteœmy zalogowani i znajdujemy siê na stronie g³ównej (main)
+
+Test 2.
+Tytu³: Przegl¹danie Wikipedii
+Opis: Przegl¹danie materia³u z Wikipedii u¿ywaj¹c szukania.
+Wejœcie: Zalogowany u¿ytkownik
+Kroki:
+1. Na stronie g³ównej w wyszukiwarce Wikipedii wpisz "Maria Curie"
+2. SprawdŸ czy to faktycznie strona Marii Curie
+
+Oczekiwany rezultat i warunek koñcowy: Przegl¹daliœmy w³aœciwy artyku³ z Wikipedii
+
+Test 3.
+Tytu³: Przegl¹danie Polony
+Przegl¹danie materia³u z Polony u¿ywaj¹c szukania. 
+Wejœcie: Zalogowany u¿ytkownik
+Kroki:
+1. Na stronie g³ównej w wyszukiwarce Polony wpisz "Mickiewicz Pan Tadeusz"
+2. SprawdŸ czy to faktycznie strona skanu ksi¹¿ki Pana Tadeusza
+
+Oczekiwany rezultat i warunek koñcowy: Przegl¹danie wyszukiwanego skanu z Polony
+
+
+Wymaganie 2.
+"Ka¿dy zasób powinien mieæ mo¿liwoœæ skomentowania przez u¿ytkowników, a ka¿da osoba przegl¹daj¹ca dan¹ podstronê danego serwisu edukacyjnego z poziomu aplikacji powinien mieæ mo¿liwoœæ odczytywania komentarzy."
+
+Test 1.
+Tytu³: Nowy komentarz, jeden u¿ytkownik
+Opis: Zalogujemy u¿ytkownika oraz dodamy komentarz do strony na wikipedii np. "Cracow". Komentarz powinien daæ siê wyœwietlaæ.
+Wejœcie: Zalogowany u¿ytkownik
+Kroki:
+1. Na stronie g³ównej w wyszukiwarce Wikipedii wpisz nazwê artyku³u i wyszukaj
+2. Dodajmy komentarz
+3. SprawdŸmy, czy komentarz zosta³ dodany
+
+Oczekiwany rezultat i warunek koñcowy: Dodany kometarz istnieje
+
+Test 2.
+Tytu³: Nowy komentarz, dwóch u¿ytkowników
+Opis: Zarejestrujemy u¿ytkownika oraz dodamy kojeny komentarz z inn¹ treœci¹. Ponadto zobaczymy, czy nowy u¿ytkownik widzi oba komentarze.
+Wejœcie: Wchodzimy na stronê g³ówn¹ (index) jako niezalogowany u¿ytkownik
+Kroki:
+1. Na stronie g³ównej w wyszukiwarce Wikipedii wpisz nazwê artyku³u i wyszukaj
+2. Dodajmy komentarz
+3. SprawdŸmy, czy komentarz zosta³ dodany
+
+Oczekiwany rezultat i warunek koñcowy: Dodany kometarz istnieje. Ponadto istnieje komentarz z poprzedniego testu.
+
+
+Test 3.
+Tytu³: Nowy komentarz, trzech u¿ytkowników
+Opis: 
+Zarejestrujemy jeszcze jednego u¿ytkownika i spróbujemy dodaæ dwa komentarze o tej samej treœci. Serwer nie doda tego samego komentarza drugi raz, wiêc powinny byæ trzy.
+Wejœcie: Wchodzimy na stronê g³ówn¹ (index) jako niezalogowany u¿ytkownik
+Kroki:
+1. Na stronie g³ównej w wyszukiwarce Wikipedii wpisz nazwê artyku³u i wyszukaj
+2. Dodajmy komentarz
+3. SprawdŸmy, czy komentarz zosta³ dodany
+
+Oczekiwany rezultat i warunek koñcowy: Dodany kometarz istnieje bez duplikatu. Ponadto istniej¹ komentarze z poprzednich testów.
+
+Wymaganie 3.
+"Najchêtniej czytane materia³y, najczêœciej komentowane powinny byæ rekomendowane u¿ytkownikom aplikacji. "
+
+Test 1.
+Tytu³: Polecany artyku³
+Opis: Na stronie g³ównej sprawdzimy, czy artyku³ z Wikipedii z poprzednich testów jest rekomendowany i czy ma trzy unikalne wizyty.
+Wejœcie: jesteœmy zalogowani jako dowolny u¿ytkownik
+Kroki:
+1. SprawdŸmy, czy ten artyku³ ma trzy wyœwietlenia i jest polecany na stronie main.
+
+Oczekiwany rezultat i warunek koñcowy: Na stronie g³ównej ten artyku³ jest polecany i ma trzy wyœwietlenia.
+
+Test 2.
+Tytu³: Nowe wyœwietlenie
+Opis: Dodajem nowego uzytkownika i wyœwietlamy Lalkê Boles³awa Prusa z Polony.
+Wejœcie: Jesteœmy niezalogowani
+Kroki:
+1. Tworzmy konto
+2. Wpisz w wyszukiwarce Polona "Lalka Boles³aw Prus"
+3. SprawdŸ czy na stornie main, Lalka jest polecana.
+
+Oczekiwany rezultat i warunek koñcowy: Lalka Boles³awa Prusa jest rekomendowana i ma piêæ wyœwietleñ
+
+Test 3.
+Tytu³: Nowy u¿ytkownik bez wyœwietleñ
+Opis: Tworzymy nowe konto i sprawdzamy czy zasoby, które by³y do tej pory wyœwietlane s¹ polecane.
+Wejœcie: Jesteœmy niezalogowani
+Kroki:
+1. Tworzmy konto
+2. SprawdŸ czy na stornie main wszystkie do tej pory wyœwietlenia s¹ naliczane.
+
+Oczekiwany rezultat i warunek koñcowy: Zasoby przegl¹dane w poprzednich testach powinny byæ polecane dla nowego u¿ytkownika i mieæ odpowiednie iloœci wyœwietleñ.
+
+
+Wymaganie 4.
+"Aplikacja nagradza u¿ytkowników, przyznaj¹c punkty doœwiadczenia"
+
+Test 1. 
+Tytu³: Naliczanie punktów - proste
+Opis: Wchodzimy nowym u¿ytkownikiem i przegl¹damy zasób. Na naszym profilu powinniœmy mieæ punkty.
+Wejœcie: jesteœmy zalogowani na nowo stworzony koncie
+Kroki:
+1. Wchodzimy na dowolny zasób (szukanie Wikipedii lub Polony)
+2. Czekamy kilkanaœcie sekund
+3. Wchodzimy na nasz profil i sprawdzamy, czy mamy wiêcej ni¿ 0 punktów.
+
+Oczekiwany rezultat i warunek koñcowy: Mamy punkty na profilu.
+
+Test 2.
+Tytu³: Naliczanie punktów - ponowne
+Opis: Wchodzimy ponownie na t¹ sam¹ podstronê i znowu czekamy kilkanaœcie sekund. Liczba punktów powinna siê zwiêkszyæ.
+Wejœcie: jesteœmy zalogowani na koncie z poprzedniego testu
+Kroki:
+1. Wchodzimy na zasób w poprzednim teœcie
+2. Czekamy kilkanaœcie sekund
+3. Wchodzimy na nasz profil i sprawdzamy, czy mamy wiêcej punktów ni¿ poprzednio.
+
+Oczekiwany rezultat i warunek koñcowy: Mamy wiêcej punktów ni¿ w poprzednim teœcie
+
+Test 3.
+Tytu³: Naliczanie punktów - ponowne 2
+Opis: Wchodzimy ponownie na inn¹ ni¿ w poprzednich testach podstronê i znowu czekamy kilkanaœcie sekund. Liczba punktów powinna siê zwiêkszyæ.
+Wejœcie: jesteœmy zalogowani na koncie z poprzedniego testu
+Kroki:
+1. Wchodzimy na dowolny zasób (szukanie Wikipedii lub Polony)
+2. Czekamy kilkanaœcie sekund
+3. Wchodzimy na nasz profil i sprawdzamy, czy mamy wiêcej punktów ni¿ poprzednio
+
+Oczekiwany rezultat i warunek koñcowy: Mamy wiêcej punktów ni¿ poprzednio. Na profilu s¹ dwa zapisy obu zasobów.
+
+Wymaganie 5.
+"Twórca serwisu powinien mieæ ³atwy dostêp w przystosowywaniu nowych serwisów, zasobów edukacyjnych do przegl¹dania w aplikacji. "
+
+Nie podlega testom, ale wynika ze struktury kodu Ÿród³owego. Nie testujemy tego.
+
+Wymaganie 6.
+"U¿ytkownicy mog¹ ogl¹daæ rankingi i przegl¹daæ dane innych u¿ytkowników."
+
+Test 1.
+Tytu³: Wyœwietlenie rankingu
+Opis: Wyœwietl ranking i na pierwszym miejscu powinien byæ u¿ytkownik z testów 4.x.
+Wejœcie: zalogowany u¿ytkownik na stronie g³ównej main
+1. WejdŸ w ranking
+2. SprawdŸ czy na pierwszym miejscu jest u¿ytkownik z testów 4.x.
+
+Oczekiwany rezultat i warunek koñcowy: Ranking, na którym u¿ytkownik z testów 4.x bêdzie na pierwszym miejscu.
+
+Test 2.
+Tytu³: Wyœwietlenie rankingu, nowy lider
+Opis: Jako dowolny, nowy u¿ytkownik sprawdzimy, czy jak ranking wybierze nowego lidera.
+Wejœcie: zalogowany u¿ytkownik na stronie g³ównej main
+1. WejdŸ w dowoln¹ iloœæ zasobów i spêdŸ tam tak d³ugo czasu by wyprzedziæ obecnego lidera. Np. na wiki?title=France i spêdŸ tam kilka minut.
+2. SprawdŸ czy lider siê zmieni³
+
+Oczekiwany rezultat i warunek koñcowy: Nowy u¿ytkownik jest na miejscu pierwszym. U¿ytkownik z testów 4.x jest na drugim.
+
+Test 3.
+Tytu³: Sprawdzanie zgodnoœci punktów
+Opis: WejdŸ dowolnym nowym u¿ytkownikiem na profile innych u¿ytkowników i sprawdŸ czy maj¹ punkty za przegl¹danie artyku³ów, które przegl¹dali.
+1. WejdŸ w profil u¿ytkownika z poprzednich testów i sprawdzaj czy ma punkty za zasoby, które przegl¹da³
+2. WejdŸ w swój profil i potwierdŸ brak punktów.
+
+Oczekiwany rezultat i warunek koñcowy: Ka¿dy z u¿ytkowników ma punkty za zasoby jakie przegl¹da³. My, jako nowy u¿ytkownik nie powinniœmy mieæ ani jednego punktu.
+
+
