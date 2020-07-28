@@ -39,4 +39,4 @@ Despite web-app working correctly most of the time, there are some things that s
 - some Polona scans are searched with query that ensures the found books are public, yet API returns some non-public ones, sometimes an error should appear
 - Wikipedia pages are loaded on server and then send to the user browsing it, so loading times are a little bit longer than browsing in directly on Wikipedia, same goes for Polona books
 - loading a resource for a first time makes it recalculate max points: depending on the resource this may take a little bit longer to load
-- data base makes rankings and updates stats every minute, if you are expecting a larger number of users, make it less frequently
+- data base makes rankings and updates stats every minute, if you are expecting a larger number of users, make it less frequent
