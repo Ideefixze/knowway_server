@@ -1,25 +1,23 @@
-Projekt jest obiektowy, istniej¹ podzia³y na klasy oraz zastosowa³em dziedziczenie. Jednak¿e, przez niewielki rozmiar projektu, nie wykorzystywa³em pe³ni potencja³u programowania obiektowego, poniewa¿ by³oby to zbêdne i swoiste "wyci¹gniêcie armaty" na muchê.
+Projekt korzysta z paradygmatu programowania obiektowego, istniejÄ… podziaÅ‚y na klasy oraz zastosowaÅ‚em dziedziczenie.
 
-Zastosowa³em zasady SOLID:
-S - klasa Resource/User nie martwi siê o zapisywanie na dysku a jedynie o rzeczy jej dotycz¹ce. Podobnie jest z klasami Simple_DB, które maj¹ jedynie za zadanie odczytywaæ i zapisywaæ dane na dysku
-O - klasy s¹ otwarte na rozszerzenia ale ich zmiana k³opotliwa. Nie by³oby problemem stworzenie nowych funkcjonalnoœci do klas i nowych typów zasobów jak i przekierowañ serwera HTTP. Przyk³ad: na samym koñcu projektu implementowa³em ranking, zatem doda³em funkcjonalnoœæ do klas Simple_DB, która co minutê tworzy ranking i zapisuje w pliku txt. Serwer natomiast prosi o odczytanie przez bazê danych pierwsze X pozycji rankingu i renderuje template HTML przesy³aj¹c u¿ytkownikowi. Ca³y ten 'ficzer' by³ prosty do dodania.
-L - stosujê klasê bazow¹ Resource, która jest u¿ywana przez inne klasy i nie posiada ona zale¿noœci od klasy pochodnej (Wikipedia, Polona).
-I - w projekcie nie stosujê interfejsów, poniewa¿ uzna³em to za zbêdne.
-D - mo¿liwe, ¿e z³ama³em t¹ zasadê w Server i klasami Simple_DB_User oraz Simple_DB_Resource œwiadomie, poniewa¿ uzna³em, ¿e klasa Simple_DB by³aby zbyt ogólna: sposób dzia³ania na User oraz Resource móg³ siê znacz¹co ró¿niæ a taka abstrakcja (moim zdaniem) by³aby zbêdn¹, bior¹c pod uwagê te¿ skalê projektu oraz fakt, ¿e owe Simple_DB nie bêd¹ wykorzystywane nigdzie indziej ni¿ w klasie Server.
+ZastosowaÅ‚em zasady SOLID:
+S - klasa Resource/User nie martwi siÄ™ o zapisywanie na dysku a jedynie o rzeczy jej dotyczÄ…ce. Podobnie jest z klasami Simple_DB, ktÃ³re majÄ… jedynie za zadanie odczytywaÄ‡ i zapisywaÄ‡ dane na dysku
+O - klasy sÄ… otwarte na rozszerzenia ale ich zmiana kÅ‚opotliwa. Nie byÅ‚oby problemem stworzenie nowych funkcjonalnoÅ›ci do klas i nowych typÃ³w zasobÃ³w jak i przekierowaÅ„ serwera HTTP. PrzykÅ‚ad: na samym koÅ„cu projektu implementowaÅ‚em ranking, zatem dodaÅ‚em funkcjonalnoÅ›Ä‡ do klas Simple_DB, ktÃ³ra co minutÄ™ tworzy ranking i zapisuje w pliku txt. Serwer natomiast prosi o odczytanie przez bazÄ™ danych pierwsze X pozycji rankingu i renderuje template HTML przesyÅ‚ajÄ…c uÅ¼ytkownikowi. CaÅ‚y ten 'ficzer' byÅ‚ prosty do dodania.
+L - stosujÄ™ klasÄ™ bazowÄ… Resource, ktÃ³ra jest uÅ¼ywana przez inne klasy i nie posiada ona zaleÅ¼noÅ›ci od klasy pochodnej (Wikipedia, Polona).
+I - w projekcie nie stosujÄ™ interfejsÃ³w, poniewaÅ¼ uznaÅ‚em to za zbÄ™dne.
+D - moÅ¼liwe, Å¼e zÅ‚amaÅ‚em tÄ… zasadÄ™ w Server i klasami Simple_DB_User oraz Simple_DB_Resource Å›wiadomie, poniewaÅ¼ uznaÅ‚em, Å¼e klasa Simple_DB byÅ‚aby zbyt ogÃ³lna: sposÃ³b dziaÅ‚ania na User oraz Resource mÃ³gÅ‚ siÄ™ znaczÄ…co rÃ³Å¼niÄ‡ a taka abstrakcja (moim zdaniem) byÅ‚aby zbÄ™dnÄ…, biorÄ…c pod uwagÄ™ teÅ¼ skalÄ™ projektu oraz fakt, Å¼e owe Simple_DB nie bÄ™dÄ… wykorzystywane nigdzie indziej niÅ¼ w klasie Server.
 
 
-Zastosowa³em dwa wzorce projektowe:
+ZastosowaÅ‚em dwa wzorce projektowe:
 
-Singleton: klasa Server powinna byæ tylko jedna jedyna w trakcie uruchomienia programu oraz powinna byæ widoczna przez inne klasy. By³ by problem jakby programista uruchomi³ serwer dwukrotnie i generowa³oby to b³êdy.
+Singleton: klasa Server powinna byÄ‡ tylko jedna jedyna w trakcie uruchomienia programu oraz powinna byÄ‡ widoczna przez inne klasy. ByÅ‚ by problem jakby programista uruchomiÅ‚ serwer dwukrotnie i generowaÅ‚oby to bÅ‚Ä™dy.
 Factory: ResourceFactory tworzy odpowiedni Resource z linku (<domena>/<typ>?<dane zapytania>) oraz tworzy odpowiedni Resource z pliku JSON.
 
-(Komenatrze dlaczego Python da³em w komentarzu na Pegazie i Pan nie zauwa¿y³.)
-
-Jak uruchomiæ?
+Jak uruchomiÄ‡?
 Wymagania:
 
 Python3
-oraz modu³y:
+oraz moduÅ‚y:
 Flask_WTF==0.14.3
 Flask==1.1.2
 wikipedia==1.4.0
@@ -28,7 +26,7 @@ requests==2.23.0
 
     Python3 - https://www.python.org/downloads/
     Flask - [pip install Flask] na windowsowym CMD lub: https://flask.palletsprojects.com/en/1.1.x/installation/ 
-Nie potrzebujemy virtual environment bo nie mamy zbyt wielu zale¿noœci.
+Nie potrzebujemy virtual environment bo nie mamy zbyt wielu zaleÅ¼noÅ›ci.
     Flask_WTF - pip install Flask-WTF
     requests - pip install requests
     WTForms - pip install WTForms
@@ -36,12 +34,10 @@ Nie potrzebujemy virtual environment bo nie mamy zbyt wielu zale¿noœci.
 
 Instrukcja:
 Przed jakimkolwiek uruchomieniem:
-Pamiêtaj by upewniæ siê, ¿e folder stats, resources oraz users istnieje w folderze src i je¿eli testujesz, ¿e jest pusty!
-Dodaj zmienn¹ œrodowiskow¹: C:\path\to\app\src>set FLASK_APP=server.py
-Uruchom server.py uzywajac cmd -> python.exe <directory>/server.py i wejdŸ http://127.0.0.1:5000/ w przegl¹darce.
+PamiÄ™taj by upewniÄ‡ siÄ™, Å¼e folder stats, resources oraz users istniejÄ… w folderze src i jeÅ¼eli testujesz, Å¼e sÄ… puste!
+Dodaj zmiennÄ… Å›rodowiskowÄ…: C:\path\to\app\src>set FLASK_APP=server.py
+Uruchom server.py uzywajac cmd -> python.exe <directory>/server.py i wejdÅº http://127.0.0.1:5000/ w przeglÄ…darce.
 Zamknij server Ctrl+C.
 
-Taki sposób uda³o mi siê uruchomiæ to na drugim komputerze z Windows 7, je¿eli bêd¹ jakiekolwiek problemy, proszê o kontakt.
-
-By uruchomiæ unit-testy, które siê zmieni³y: python.exe <directory>/unit_tests.py.
+By uruchomiÄ‡ unit-testy, ktÃ³re siÄ™ zmieniÅ‚y: python.exe <directory>/unit_tests.py.
 
