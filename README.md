@@ -1,5 +1,7 @@
 # KnowWay!
-the gamified educational resource browser <br>Software Engineering University Project by Dominik Zimny
+the gamified educational resource browser. Get score by reading Wikipedia or reading old books on Polona!
+
+<br>Software Engineering University Project by Dominik Zimny
 ![KnowWay!](https://i.imgur.com/jlQpgHa.png)
 
 ## Basic functionalities
